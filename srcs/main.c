@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/15 23:22:14 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/15 23:42:16 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,31 @@ pthread_mutex_t	chopstick[PHILOS];
 pthread_t		philo[PHILOS];
 pthread_mutex_t	food_lock;
 int				sleep_seconds = 0;
+
+int	food_on_table(void)
+{
+	static int	food = FOOD;
+	int			myfood;
+
+	pthread_mutex_lock(&food_lock);
+	if (food > 0)
+		food--;
+	myfood = food;
+	pthread_mutex_unlock(&food_lock);
+	return (myfood);
+}
+
+void	get_chopstick(int phil, int c, char *hand)
+{
+	pthread_mutex_lock(&chopstick[c]);
+	printf("Philosopher %d: got %s chopstick %d\n", phil, hand, c);
+}
+
+void	put_chopstick(int c1, int c2)
+{
+	pthread_mutex_unlock(&chopstick[c1]);
+	pthread_mutex_unlock(&chopstick[c2]);
+}
 
 void	*philosopher(void *num)
 {
@@ -38,44 +63,18 @@ void	*philosopher(void *num)
 		if (id == 1)
 			sleep(sleep_seconds);
 
-		grab_chopstick(id, right_chopstick, "right");
-		grab_chopstick(id, left_chopstick, "left");
+		get_chopstick(id, right_chopstick, "right");
+		get_chopstick(id, left_chopstick, "left");
 
 		printf("Philosopher %d: eating.\n", id);
 		usleep(DELAY * (FOOD -f + 1));
-		down_chopstick(left_chopstick, right_chopstick);
+		put_chopstick(left_chopstick, right_chopstick);
 		f = food_on_table();
 	}
 
 	printf("Philosopher %d: is done eating.\n", id);
 	return (NULL);
 }
-
-int	food_on_table(void)
-{
-	static int	food = FOOD;
-	int			myfood;
-
-	pthread_mutex_lock(&food_lock);
-	if (food > 0)
-		food--;
-	myfood = food;
-	pthread_mutex_unlock(&food_lock);
-	return (myfood);
-}
-
-void	grab_chopstick(int phil, int c, char *hand)
-{
-	pthread_mutex_lock(&chopstick[c]);
-	printf("Philosopher %d: got %s chopstick %d\n", phil, hand, c);
-}
-
-void	down_chopstick(int c1, int c2)
-{
-	pthread_mutex_unlock(&chopstick[c1]);
-	pthread_mutex_unlock(&chopstick[c2]);
-}
-
 
 int	main(int argc, char *argv[])
 {

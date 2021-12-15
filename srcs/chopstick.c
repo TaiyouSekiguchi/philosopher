@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   chopstick.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/15 23:28:18 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/12/15 23:27:13 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/15 23:28:00 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <assert.h>
+void	get_chopstick(int phil, int c, char *hand)
+{
+	pthread_mutex_lock(&chopstick[c]);
+	printf("Philosopher %d: got %s chopstick %d\n", phil, hand, c);
+}
 
-#define PHILOS	5
-#define DELAY	5000
-#define FOOD	50
-
-void	*philosopher(void *id);
-void	get_chopstick(int phil, int c, char *hand);
-void	put_chopstick(int c1 ,int c2);
-int		food_on_table(void);
-
-#endif
+void	put_chopstick(int c1, int c2)
+{
+	pthread_mutex_unlock(&chopstick[c1]);
+	pthread_mutex_unlock(&chopstick[c2]);
+}

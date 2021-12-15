@@ -6,12 +6,13 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/15 23:24:02 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/15 23:39:05 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PHILO			=	philo
 SRCS			=	main.c
+#					chopstick.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
