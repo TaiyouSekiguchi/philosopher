@@ -1,2 +1,4 @@
 philo
 *.o
+*.a
+libft

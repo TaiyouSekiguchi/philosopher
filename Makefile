@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/15 23:39:05 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/16 12:05:46 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 INCLUDE			=	-I./include
-LIB				=	-lpthread
+LIB				=	-lpthread -Llibft -lft
 RM				=	rm -f
 
 .PHONY			:	all clean fclean re
