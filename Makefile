@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/16 13:15:29 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/16 17:33:56 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,11 @@ SRCS			=	main.c\
 					chopstick.c\
 					my_error.c\
 					philosopher.c\
-					set_status_and_put_timestamp.c
+					set_status_and_put_timestamp.c\
+					argv_atoi.c\
+					fork_malloc_and_init.c\
+					data_init.c\
+					philo_init.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

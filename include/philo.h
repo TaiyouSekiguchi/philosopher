@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/16 13:20:39 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/16 17:34:44 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_times_must_eat;
-	pthread_mutex_t	*chopstick;
+	pthread_mutex_t	*fork;
 }				t_data;
 
 void	*philosopher(void *arg);
@@ -49,5 +49,9 @@ void	get_chopstick(t_data *data, int id, int cs_num);
 void	put_chopstick(pthread_mutex_t *chopstick, int left_cs ,int right_cs);
 void	my_error(char *msg);
 void	set_status_and_put_timestamp(t_data *data, int id, int status);
+void	argv_atoi(t_data *data, int argc, char *argv[]);
+void	fork_malloc_and_init(pthread_mutex_t **fork, int num);
+void	data_init(t_data **data, t_data *arg, int argc, pthread_mutex_t *fork);
+void	philo_init(pthread_t **philos, int num);
 
 #endif
