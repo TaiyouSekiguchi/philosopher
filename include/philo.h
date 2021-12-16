@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/16 10:02:25 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:20:39 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,35 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
+#include <sys/time.h>
 
-#define PHILOS	5
-#define DELAY	5000
-#define FOOD	50
+#include "libft.h"
+
+typedef enum e_status
+{
+	THINK,
+	TAKEN,
+	EAT,
+	SLEEP,
+	DIE,
+}			t_status;
 
 typedef struct s_data
 {
-	int	num_of_phils;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	num_of_times_must_eat;
+	int				id;
+	int				status;
+	int				num_of_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				num_of_times_must_eat;
+	pthread_mutex_t	*chopstick;
 }				t_data;
 
-
-void	*philosopher(void *id);
-void	get_chopstick(int phil, int c, char *hand);
-void	put_chopstick(int c1 ,int c2);
-int		food_on_table(void);
+void	*philosopher(void *arg);
+void	get_chopstick(t_data *data, int id, int cs_num);
+void	put_chopstick(pthread_mutex_t *chopstick, int left_cs ,int right_cs);
+void	my_error(char *msg);
+void	set_status_and_put_timestamp(t_data *data, int id, int status);
 
 #endif
