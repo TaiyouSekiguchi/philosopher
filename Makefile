@@ -6,20 +6,23 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/16 17:33:56 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/17 11:39:39 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PHILO			=	philo
 SRCS			=	main.c\
-					chopstick.c\
+					get_fork.c\
+					sleep_and_drop_fork.c\
 					my_error.c\
 					philosopher.c\
 					set_status_and_put_timestamp.c\
 					argv_atoi.c\
-					fork_malloc_and_init.c\
+					fork_init.c\
 					data_init.c\
-					philo_init.c
+					philos_init.c\
+					put_timestamp.c\
+					set_status_time.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

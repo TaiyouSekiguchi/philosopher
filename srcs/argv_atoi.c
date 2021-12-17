@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_atoi.c                                         :+:      :+:    :+:   */
+/*   argv_atoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:49:23 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/16 16:49:34 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:18:07 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	argv_atoi(t_data *arg, int argc, char *argv[])
+void	argv_atoi(t_arg *arg, int argc, char *argv[])
 {
 	arg->num_of_philos = ft_atoi(argv[1]);
 	if (arg->num_of_philos <= 0)

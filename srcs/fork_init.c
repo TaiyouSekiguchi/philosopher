@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chopstick.c                                        :+:      :+:    :+:   */
+/*   fork_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 13:10:45 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/16 13:19:54 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/12/16 22:19:49 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/16 22:21:17 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	get_chopstick(t_data *data, int id, int cs_num)
+void	fork_init(pthread_mutex_t **fork, int num)
 {
-	pthread_mutex_lock(&data->chopstick[cs_num]);
-	set_status_and_put_timestamp(data, id, TAKEN);
-}
+	int		i;
 
-void	put_chopstick(pthread_mutex_t *chopstick, int left_cs, int right_cs)
-{
-	pthread_mutex_unlock(&chopstick[left_cs]);
-	pthread_mutex_unlock(&chopstick[right_cs]);
+	*fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
+	if (*fork == NULL)
+		my_error("Malloc failed in fork_init.");
+	i = 0;
+	while (i < num)
+	{
+		pthread_mutex_init(&(*fork)[i], NULL);
+		i++;
+	}
 }
