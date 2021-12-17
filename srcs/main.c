@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 11:42:01 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:34:01 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	t_data				*data;
 	pthread_t			*philos;
 	int 				i;
+	pthread_t			moni;
 
 	if (argc < 5 || argc > 6)
 		my_error("argc is incorrect.");
@@ -34,6 +35,8 @@ int	main(int argc, char *argv[])
 		pthread_create(&philos[i], NULL, philosopher, &data[i]);
 		i++;
 	}
+
+	pthread_create(&moni, NULL, monitor, data);
 
 	i = 0;
 	while (i < arg.num_of_philos)

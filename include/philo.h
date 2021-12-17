@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 11:41:14 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:32:15 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	get_fork(t_data *data, int id, int fork_id);
 void	sleep_and_drop_fork(t_data *data, int left_fork ,int right_fork);
 void	set_status_and_put_timestamp(t_data *data, int id, int status);
 void	put_timestamp(int id, char *msg);
+void	*monitor(void *arg);
 
 #endif
