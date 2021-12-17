@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 11:46:18 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/17 12:19:09 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	*philosopher(void *arg)
 		}
 		else
 		{
+			usleep(100);
 			get_fork(data, id, right_fork);
 			get_fork(data, id, left_fork);
 		}
