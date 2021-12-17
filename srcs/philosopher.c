@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 15:48:30 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:37:21 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*philosopher(void *arg)
 
 	while (1)
 	{
-		usleep(200);
+		usleep(400);
 		if (data->group == EVEN)
 		{
 			get_fork(data, id, left_fork);

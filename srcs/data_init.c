@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:25:34 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 11:38:47 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:12:44 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	data_init(t_data **data, t_arg *arg, pthread_mutex_t *fork)
 			(*data)[i].group = EVEN;
 		else
 			(*data)[i].group = ODD;
+		(*data)[i].eat_count = 0;
 		(*data)[i].status = THINK;
 		(*data)[i].status_sec = 0;
 		(*data)[i].status_msec = 0;

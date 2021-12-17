@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 15:32:15 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:11:58 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 {
 	int				id;
 	int				group;
+	int				eat_count;
 	int				status;
 	int				status_sec;
 	int				status_msec;

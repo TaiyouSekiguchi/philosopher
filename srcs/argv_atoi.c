@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:49:23 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/16 22:18:07 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:09:24 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void	argv_atoi(t_arg *arg, int argc, char *argv[])
 		if (arg->num_of_times_must_eat < 0)
 			my_error("num_of_times_must_eat is negative");
 	}
+	else
+		arg->num_of_times_must_eat = -1;
 }
