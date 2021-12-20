@@ -6,27 +6,11 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 16:11:25 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 16:24:37 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	do_pthread_create(t_philo *philos, t_monitor *monitor)
-{
-	int	num;
-	int	i;
-
-	num = philos[0].arg->num_of_philos;
-	i = 0;
-	while (i < num)
-	{
-		pthread_create(&philos[i].philo, NULL, philosopher, &philos[i]);
-		i++;
-	}
-
-	pthread_create(&monitor->monitor, NULL, monitoring, monitor);
-}
 
 int	main(int argc, char *argv[])
 {
@@ -42,15 +26,10 @@ int	main(int argc, char *argv[])
 	fork_init(&fork, arg.num_of_philos);
 	philos_init(&philos, &arg, fork);
 	monitor_init(&monitor, philos);
-
 	do_pthread_create(philos, &monitor);
-
 	pthread_join(monitor.monitor, NULL);
-
-
 	philos_destroy(&philos);
 	fork_destroy(&fork, arg.num_of_philos);
-
 	printf("Philosopher is finish\n");
 	return (0);
 }
