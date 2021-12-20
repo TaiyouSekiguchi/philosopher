@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 16:11:58 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 16:03:53 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 #include "libft.h"
 
+# define NONE -1
+
 typedef enum e_status
 {
 	THINK,
@@ -31,6 +33,12 @@ typedef enum e_status
 	SLEEP,
 	DIE,
 }			t_status;
+
+typedef enum e_loop
+{
+	GO,
+	BREAK,
+}			t_loop;
 
 typedef enum e_group
 {
@@ -47,30 +55,42 @@ typedef struct s_arg
 	int			num_of_times_must_eat;
 }				t_arg;
 
-typedef struct s_data
+typedef struct s_philo
 {
+	pthread_t		philo;
 	int				id;
 	int				group;
+	int				loop;
 	int				eat_count;
 	int				status;
 	int				status_sec;
 	int				status_msec;
 	t_arg			*arg;
 	pthread_mutex_t	*fork;
-}					t_data;
+}					t_philo;
+
+
+typedef struct s_monitor
+{
+	pthread_t	monitor;
+	t_philo		*philos;
+}				t_monitor;
+
 
 void	my_error(char *msg);
 void	argv_atoi(t_arg *arg, int argc, char *argv[]);
 void	fork_init(pthread_mutex_t **fork, int num);
-void	data_init(t_data **data, t_arg *arg, pthread_mutex_t *fork);
-void	philos_init(pthread_t **philos, int num);
+void	fork_destroy(pthread_mutex_t **fork, int num);
+void	philos_init(t_philo **philos, t_arg *arg, pthread_mutex_t *fork);
 void	*philosopher(void *arg);
-void	set_status_time(t_data *data);
+void	set_status_time(t_philo *philo);
 
-void	get_fork(t_data *data, int id, int fork_id);
-void	sleep_and_drop_fork(t_data *data, int left_fork ,int right_fork);
-void	set_status_and_put_timestamp(t_data *data, int id, int status);
+void	get_fork(t_philo *philo, int id, int fork_id);
+void	sleep_and_drop_fork(t_philo *philo, int left_fork ,int right_fork);
+void	set_status_and_put_timestamp(t_philo *philo, int id, int status);
 void	put_timestamp(int id, char *msg);
-void	*monitor(void *arg);
-
+void	*monitoring(void *arg);
+void	monitor_init(t_monitor *monitor, t_philo *philos);
+void	philos_destroy(t_philo **philos);
+	
 #endif

@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 16:37:21 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 15:44:42 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,41 @@
 
 void	*philosopher(void *arg)
 {
-	t_data			*data;
+	t_philo			*philo;
 	int				id;
 	int				left_fork;
 	int				right_fork;
 
-	data = (t_data *)arg;
-	id = data->id;
-	set_status_time(data);
-	set_status_and_put_timestamp(data, id, THINK);
+	philo = (t_philo *)arg;
+	id = philo->id;
+	set_status_time(philo);
+	set_status_and_put_timestamp(philo, id, THINK);
 
 	left_fork = id + 1;
 	right_fork = id;
-	if (left_fork == data->arg->num_of_philos)
+	if (left_fork == philo->arg->num_of_philos)
 		left_fork = 0;
 
-	while (1)
+	while (philo->loop == GO)
 	{
-		usleep(400);
-		if (data->group == EVEN)
+		//usleep(200);
+		if (philo->group == EVEN)
 		{
-			get_fork(data, id, left_fork);
-			get_fork(data, id, right_fork);
+			usleep(200);
+			get_fork(philo, id, left_fork);
+			get_fork(philo, id, right_fork);
 		}
 		else
 		{
-			usleep(100);
-			get_fork(data, id, right_fork);
-			get_fork(data, id, left_fork);
+			get_fork(philo, id, right_fork);
+			get_fork(philo, id, left_fork);
 		}
-		set_status_and_put_timestamp(data, id, EAT);
-		usleep(data->arg->time_to_eat * 1000);
+		set_status_and_put_timestamp(philo, id, EAT);
+		usleep(philo->arg->time_to_eat * 1000);
 
-		sleep_and_drop_fork(data, left_fork, right_fork);
+		sleep_and_drop_fork(philo, left_fork, right_fork);
 
-		set_status_and_put_timestamp(data, id, THINK);
+		set_status_and_put_timestamp(philo, id, THINK);
 	}
 
 	return (NULL);

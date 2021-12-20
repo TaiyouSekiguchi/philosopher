@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/17 15:32:32 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/20 15:52:33 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,13 @@ SRCS			=	main.c\
 					set_status_and_put_timestamp.c\
 					argv_atoi.c\
 					fork_init.c\
-					data_init.c\
 					philos_init.c\
 					put_timestamp.c\
 					set_status_time.c\
-					monitor.c
+					monitoring.c\
+					monitor_init.c\
+					fork_destroy.c\
+					philos_destroy.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

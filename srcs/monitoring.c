@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor.c                                          :+:      :+:    :+:   */
+/*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:32:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/17 16:30:48 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 16:02:06 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-static void	set_dead_time(t_data *data, int *dead_sec, int *dead_msec)
+static void	set_dead_time(t_philo *philo, int *dead_sec, int *dead_msec)
 {
 	int		tmp;
 	int		sec;
 	int		msec;
 
-	tmp = data->status_msec + data->arg->time_to_die;
+	tmp = philo->status_msec + philo->arg->time_to_die;
 	sec = tmp / 1000;
 	msec = tmp % 1000;
 
-	*dead_sec = data->status_sec + sec;
+	*dead_sec = philo->status_sec + sec;
 	*dead_msec = msec;
 }
 
-static int		dead_check(t_data *data)
+static int		dead_check(t_monitor *monitor)
 {
 	struct timeval	tv;
 	int				i;
@@ -35,11 +34,11 @@ static int		dead_check(t_data *data)
 	int				dead_sec;
 	int				dead_msec;
 
-	num = data[0].arg->num_of_philos;
+	num = monitor->philos[0].arg->num_of_philos;
 	i = 0;
 	while (i < num)
 	{
-		set_dead_time(&data[i], &dead_sec, &dead_msec);
+		set_dead_time(&monitor->philos[i], &dead_sec, &dead_msec);
 		gettimeofday(&tv, NULL);
 		if (dead_sec < tv.tv_sec
 			|| (dead_sec == tv.tv_sec && dead_msec < (tv.tv_usec / 1000)))
@@ -49,7 +48,7 @@ static int		dead_check(t_data *data)
 	return (-1);
 }
 
-static int	must_eat_check(t_data *data)
+/*static int	must_eat_check(t_data *data)
 {
 	int		i;
 	int		num;
@@ -65,36 +64,48 @@ static int	must_eat_check(t_data *data)
 		i++;
 	}
 	return (1);
-}
+}*/
 
-static void	dead_exit(t_data *data, int id)
+static void	dead_exit(t_philo *philos, int id)
 {
-	set_status_and_put_timestamp(data, id, DIE);
-	exit(1);
+	int	i;
+
+
+	set_status_and_put_timestamp(philos, id, DIE);
+	i = 0;
+	while (i < philos[0].arg->num_of_philos)
+	{
+		pthread_detach(philos[i].philo);
+		philos[i].loop = BREAK;
+		i++;
+	}
 }
 
-static void full_exit(void)
+/*static void full_exit(void)
 {
 	exit(0);
-}
+}*/
 
-void	*monitor(void *arg)
+void	*monitoring(void *arg)
 {
-	t_data	*data;
+	t_monitor	*monitor;
 	int		ret;
-	int		flag;
-	int		must_eat_count;
+	//int		flag;
+	//int		must_eat_count;
 
-	data = (t_data *)arg;
-	must_eat_count = data->arg->num_of_times_must_eat;
+	monitor = (t_monitor *)arg;
+	//must_eat_count = data->arg->num_of_times_must_eat;
 	while (1)
 	{
-		ret = dead_check(data);
-		flag = must_eat_check(data);
+		ret = dead_check(monitor);
+		//flag = must_eat_check(monitor);
 		if (ret >= 0)
-			dead_exit(data, ret);
-		if (must_eat_count >= 0 && flag)
-			full_exit();
+		{
+			dead_exit(monitor->philos, ret);
+			break ;
+		}
+		//if (must_eat_count >= 0 && flag)
+			//full_exit();
 		usleep(100);
 	}
 

@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:19:49 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/16 22:21:17 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 12:05:14 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void	fork_init(pthread_mutex_t **fork, int num)
 	i = 0;
 	while (i < num)
 	{
-		pthread_mutex_init(&(*fork)[i], NULL);
+		if (pthread_mutex_init(&(*fork)[i], NULL) == -1)
+		{
+			free(*fork);
+			my_error("pthread_mutex_init failed in fork_init");
+		}
 		i++;
 	}
 }
