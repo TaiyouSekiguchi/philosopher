@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/20 16:23:45 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/20 21:05:35 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ SRCS			=	main.c\
 					argv_atoi.c\
 					fork_init.c\
 					philos_init.c\
-					put_timestamp.c\
 					set_status_time.c\
 					monitoring.c\
 					monitor_init.c\

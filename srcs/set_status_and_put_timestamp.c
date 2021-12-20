@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:49:26 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 15:51:17 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 21:04:58 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ static void	set_status(t_philo *philo, int status, char **msg)
 	else
 		*msg = "WHAT!!??";
 	philo->status = status;
+}
+
+static void	put_timestamp(int id, char *msg)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	printf("%ld%03u %d %s\n", tv.tv_sec, tv.tv_usec / 1000, id, msg);
 }
 
 void	set_status_and_put_timestamp(t_philo *philo, int id, int status)

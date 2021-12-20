@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 16:23:26 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 21:05:26 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	set_status_time(t_philo *philo);
 void	get_fork(t_philo *philo, int id, int fork_id);
 void	sleep_and_drop_fork(t_philo *philo, int left_fork ,int right_fork);
 void	set_status_and_put_timestamp(t_philo *philo, int id, int status);
-void	put_timestamp(int id, char *msg);
 void	*monitoring(void *arg);
 void	monitor_init(t_monitor *monitor, t_philo *philos);
 void	philos_destroy(t_philo **philos);
