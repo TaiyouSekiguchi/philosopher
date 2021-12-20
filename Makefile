@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/20 15:52:33 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/20 16:23:45 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS			=	main.c\
 					monitoring.c\
 					monitor_init.c\
 					fork_destroy.c\
-					philos_destroy.c
+					philos_destroy.c\
+					do_pthread_create.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

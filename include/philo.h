@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 16:03:53 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 16:23:26 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void	put_timestamp(int id, char *msg);
 void	*monitoring(void *arg);
 void	monitor_init(t_monitor *monitor, t_philo *philos);
 void	philos_destroy(t_philo **philos);
+void	do_pthread_create(t_philo *philos, t_monitor *monitor);
 	
 #endif
