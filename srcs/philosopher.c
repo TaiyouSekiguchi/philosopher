@@ -40,8 +40,8 @@ void	*philosopher(void *arg)
 		}
 		else
 		{
-			get_fork(philo, id, right_fork);
 			get_fork(philo, id, left_fork);
+			get_fork(philo, id, right_fork);
 		}
 		set_status_and_put_timestamp(philo, id, EAT);
 		usleep(philo->arg->time_to_eat * 1000);
