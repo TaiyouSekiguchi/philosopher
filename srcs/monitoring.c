@@ -12,64 +12,36 @@
 
 #include "philo.h"
 
-/*static void	set_dead_time(t_philo *philo, int *dead_sec, int *dead_msec)
-{
-	int		tmp;
-	int		sec;
-	int		msec;
-
-	tmp = philo->status_msec + philo->arg->time_to_die;
-	sec = tmp / 1000;
-	msec = tmp % 1000;
-
-	*dead_sec = philo->status_sec + sec;
-	*dead_msec = msec;
-}*/
-
 static int		dead_check(t_monitor *monitor)
 {
 	struct timeval	tv;
 	int				num;
 	int				i;
-	int				dead_sec;
-	int				dead_msec;
 
 	num = monitor->philos[0].arg->num_of_philos;
 	i = 0;
 	while (i < num)
 	{
 
-		pthread_mutex_lock(monitor->philos[i].lock);
-		dead_sec = monitor->philos[i].dead_sec;
-		dead_msec = monitor->philos[i].dead_msec;
-		pthread_mutex_unlock(monitor->philos[i].lock);
+		//pthread_mutex_lock(monitor->philos[i].lock);
+		//dead_sec = monitor->philos[i].dead_sec;
+		//dead_msec = monitor->philos[i].dead_msec;
+		//pthread_mutex_unlock(monitor->philos[i].lock);
 
 		gettimeofday(&tv, NULL);
-		if (dead_sec < tv.tv_sec
-			|| (dead_sec == tv.tv_sec && dead_msec < (tv.tv_usec / 1000)))
+
+		//printf("dead_sec  is %d\n", monitor->philos[i].dead_sec);
+		//printf("now  sed  is %ld\n", tv.tv_sec);
+		//printf("dead_msec is %d\n", monitor->philos[i].dead_msec);
+		//printf("now  msed is %d\n", tv.tv_usec / 1000);
+
+		if (monitor->philos[i].dead_sec < tv.tv_sec
+			|| (monitor->philos[i].dead_sec == tv.tv_sec && monitor->philos[i].dead_msec < (tv.tv_usec / 1000)))
 			return (i);
 		i++;
 	}
 	return (-1);
 }
-
-/*static int	must_eat_check(t_data *data)
-{
-	int		i;
-	int		num;
-	int		must_eat_count;
-
-	num = data[0].arg->num_of_philos;
-	must_eat_count = data[0].arg->num_of_times_must_eat;
-	i = 0;
-	while (i < num)
-	{
-		if (data[i].eat_count < must_eat_count)
-			return (0);
-		i++;
-	}
-	return (1);
-}*/
 
 static void	dead_exit(t_philo *philos, int id)
 {
@@ -85,32 +57,21 @@ static void	dead_exit(t_philo *philos, int id)
 	}
 }
 
-/*static void full_exit(void)
-{
-	exit(0);
-}*/
-
 void	*monitoring(void *arg)
 {
 	t_monitor	*monitor;
 	int			ret;
-	//int		flag;
-	//int		must_eat_count;
 
 	usleep(200);
 	monitor = (t_monitor *)arg;
-	//must_eat_count = data->arg->num_of_times_must_eat;
 	while (1)
 	{
 		ret = dead_check(monitor);
-		//flag = must_eat_check(monitor);
 		if (ret >= 0)
 		{
 			dead_exit(monitor->philos, ret);
 			break ;
 		}
-		//if (must_eat_count >= 0 && flag)
-			//full_exit();
 		usleep(100);
 	}
 

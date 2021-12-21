@@ -20,12 +20,10 @@ void	set_dead_time(t_philo *philo)
 	int				msec;
 
 	gettimeofday(&tv, NULL);
-	tmp = tv.tv_usec + philo->arg->time_to_die;
+	tmp = (tv.tv_usec / 1000) + philo->arg->time_to_die;
 	sec = tmp / 1000;
 	msec = tmp % 1000;
-	
-	pthread_mutex_lock(philo->lock);
+
 	philo->dead_sec = tv.tv_sec + sec;
 	philo->dead_msec = msec;
-	pthread_mutex_unlock(philo->lock);
 }

@@ -43,7 +43,6 @@ void	*philosopher(void *arg)
 
 		set_status_and_put_timestamp(philo, id, EAT);
 		usleep(philo->arg->time_to_eat * 1000);
-		philo->eat_count++;
 
 		sleep_and_drop_fork(philo, left_fork, right_fork);
 

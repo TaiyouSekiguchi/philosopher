@@ -18,7 +18,6 @@ static void	set_status(t_philo *philo, int status, char **msg)
 		*msg = "is thinking";
 	else if (status == EAT)
 	{
-		//philo->eat_count++;
 		set_dead_time(philo);
 		*msg = "is eating";
 	}
@@ -30,9 +29,6 @@ static void	set_status(t_philo *philo, int status, char **msg)
 		*msg = "died";
 	else
 		*msg = "WHAT!!??";
-	pthread_mutex_lock(philo->lock);
-	philo->status = status;
-	pthread_mutex_unlock(philo->lock);
 }
 
 static void	put_timestamp(int id, char *msg)

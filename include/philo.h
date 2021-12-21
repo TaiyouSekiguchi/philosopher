@@ -62,7 +62,6 @@ typedef struct s_philo
 	int				group;
 	int				loop;
 	int				eat_count;
-	int				status;
 	int				dead_sec;
 	int				dead_msec;
 	t_arg			*arg;

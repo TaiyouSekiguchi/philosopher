@@ -36,7 +36,6 @@ static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthrea
 			(*philos)[i].group = ODD;
 		(*philos)[i].loop = GO;
 		(*philos)[i].eat_count = 0;
-		(*philos)[i].status = THINK;
 		(*philos)[i].dead_sec = 0;
 		(*philos)[i].dead_msec = 0;
 		(*philos)[i].arg = arg;
