@@ -31,7 +31,7 @@ OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror 
-CFLAGS			+=	-fsanitize=thread -O1
+#CFLAGS			+=	-fsanitize=thread -O1
 INCLUDE			=	-I./include
 LIB				=	-lpthread -Llibft -lft
 RM				=	rm -f

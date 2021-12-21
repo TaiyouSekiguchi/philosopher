@@ -17,26 +17,22 @@ static int		dead_check(t_monitor *monitor)
 	struct timeval	tv;
 	int				num;
 	int				i;
+	int				dead_sec;
+	int				dead_msec;
 
 	num = monitor->philos[0].arg->num_of_philos;
 	i = 0;
 	while (i < num)
 	{
 
-		//pthread_mutex_lock(monitor->philos[i].lock);
-		//dead_sec = monitor->philos[i].dead_sec;
-		//dead_msec = monitor->philos[i].dead_msec;
-		//pthread_mutex_unlock(monitor->philos[i].lock);
+		pthread_mutex_lock(monitor->philos[i].lock);
+		dead_sec = monitor->philos[i].dead_sec;
+		dead_msec = monitor->philos[i].dead_msec;
+		pthread_mutex_unlock(monitor->philos[i].lock);
 
 		gettimeofday(&tv, NULL);
-
-		//printf("dead_sec  is %d\n", monitor->philos[i].dead_sec);
-		//printf("now  sed  is %ld\n", tv.tv_sec);
-		//printf("dead_msec is %d\n", monitor->philos[i].dead_msec);
-		//printf("now  msed is %d\n", tv.tv_usec / 1000);
-
-		if (monitor->philos[i].dead_sec < tv.tv_sec
-			|| (monitor->philos[i].dead_sec == tv.tv_sec && monitor->philos[i].dead_msec < (tv.tv_usec / 1000)))
+		if (dead_sec < tv.tv_sec
+			|| (dead_sec == tv.tv_sec && dead_msec < (tv.tv_usec / 1000)))
 			return (i);
 		i++;
 	}

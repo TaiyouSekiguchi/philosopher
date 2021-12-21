@@ -24,6 +24,8 @@ void	set_dead_time(t_philo *philo)
 	sec = tmp / 1000;
 	msec = tmp % 1000;
 
+	pthread_mutex_lock(philo->lock);
 	philo->dead_sec = tv.tv_sec + sec;
 	philo->dead_msec = msec;
+	pthread_mutex_unlock(philo->lock);
 }
