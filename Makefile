@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/20 21:05:35 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/20 23:24:41 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS			=	main.c\
 					argv_atoi.c\
 					fork_init.c\
 					philos_init.c\
-					set_status_time.c\
+					set_dead_time.c\
 					monitoring.c\
 					monitor_init.c\
 					fork_destroy.c\
@@ -30,7 +30,8 @@ OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror 
+CFLAGS			+=	-fsanitize=thread -O1
 INCLUDE			=	-I./include
 LIB				=	-lpthread -Llibft -lft
 RM				=	rm -f

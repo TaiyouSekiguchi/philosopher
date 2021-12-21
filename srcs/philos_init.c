@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:05:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 16:09:19 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 23:10:20 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	do_malloc(t_philo **philos, int num)
 		my_error("Malloc failed in philo_data_init.");
 }
 
-static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork)
+static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock)
 {
 	int	num;
 	int	i;
@@ -37,19 +37,20 @@ static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork)
 		(*philos)[i].loop = GO;
 		(*philos)[i].eat_count = 0;
 		(*philos)[i].status = THINK;
-		(*philos)[i].status_sec = 0;
-		(*philos)[i].status_msec = 0;
+		(*philos)[i].dead_sec = 0;
+		(*philos)[i].dead_msec = 0;
 		(*philos)[i].arg = arg;
 		(*philos)[i].fork = fork;
+		(*philos)[i].lock = lock;
 		i++;
 	}
 }
 
-void	philos_init(t_philo **philos, t_arg *arg, pthread_mutex_t *fork)
+void	philos_init(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock)
 {
 	int	num;
 
 	num = arg->num_of_philos;
 	do_malloc(philos, num);
-	data_set(philos, arg, fork);
+	data_set(philos, arg, fork, lock);
 }

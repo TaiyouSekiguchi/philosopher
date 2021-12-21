@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 17:08:25 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 22:56:58 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*philosopher(void *arg)
 
 	philo = (t_philo *)arg;
 	id = philo->id;
-	set_status_time(philo);
+	set_dead_time(philo);
 	set_status_and_put_timestamp(philo, id, THINK);
 
 	fork_set(&left_fork, &right_fork, id, philo);
@@ -43,6 +43,7 @@ void	*philosopher(void *arg)
 
 		set_status_and_put_timestamp(philo, id, EAT);
 		usleep(philo->arg->time_to_eat * 1000);
+		philo->eat_count++;
 
 		sleep_and_drop_fork(philo, left_fork, right_fork);
 

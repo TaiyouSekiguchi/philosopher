@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:49:26 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 21:04:58 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/20 23:04:03 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	set_status(t_philo *philo, int status, char **msg)
 		*msg = "is thinking";
 	else if (status == EAT)
 	{
-		philo->eat_count++;
-		set_status_time(philo);
+		//philo->eat_count++;
+		set_dead_time(philo);
 		*msg = "is eating";
 	}
 	else if (status == SLEEP)
@@ -30,7 +30,9 @@ static void	set_status(t_philo *philo, int status, char **msg)
 		*msg = "died";
 	else
 		*msg = "WHAT!!??";
+	pthread_mutex_lock(philo->lock);
 	philo->status = status;
+	pthread_mutex_unlock(philo->lock);
 }
 
 static void	put_timestamp(int id, char *msg)
