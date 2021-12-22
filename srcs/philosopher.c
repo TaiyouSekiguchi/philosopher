@@ -26,6 +26,8 @@ void	*philosopher(void *arg)
 	int				id;
 	int				left_fork;
 	int				right_fork;
+	int				hand;
+	int				local_status;
 
 	philo = (t_philo *)arg;
 	id = philo->id;
@@ -33,16 +35,42 @@ void	*philosopher(void *arg)
 	set_status_and_put_timestamp(philo, id, THINK);
 
 	fork_set(&left_fork, &right_fork, id, philo);
+	hand = LEFT;
 
-	while (philo->loop == GO)
+	while (    )
 	{
 		if (philo->group == EVEN)
 			usleep(200);
+
+		pthread_mutex_lock();
+		set_status();
+		pthread_mutex_unlock();
+
+		if (local_status == think)
+		{
+			if (hand == LEFT)
+				get_fork(left);
+			else
+				get_fork(right);
+		}
+		else if (local_status == eat)
+		{
+			usleep(time_to_eat * 1000);
+		}
+		else if (local_status == sleep)
+			sleep_and_drop_fork();
+		else if (local_status == die)
+			break ;
+
+
+
+
 		get_fork(philo, id, left_fork);
 		get_fork(philo, id, right_fork);
 
 		set_status_and_put_timestamp(philo, id, EAT);
 		usleep(philo->arg->time_to_eat * 1000);
+
 
 		sleep_and_drop_fork(philo, left_fork, right_fork);
 

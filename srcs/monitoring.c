@@ -53,10 +53,48 @@ static void	dead_exit(t_philo *philos, int id)
 	}
 }
 
+//static int	eat_count_check(t_monitor *monitor)
+//{
+	//int				num;
+	//int				i;
+	//int				tmp;
+//
+	//num = monitor->philos[0].arg->num_of_philos;
+	//i = 0;
+	//while (i < num)
+	//{
+		//pthread_mutex_lock(monitor->philos[0].lock);
+		//tmp = monitor->philos[i].eat_count;
+		//if (tmp < monitor->philos[i].arg->num_of_times_must_eat)
+		//{
+			//pthread_mutex_unlock(monitor->philos[0].lock);
+			//return (0);
+		//}
+		//pthread_mutex_unlock(monitor->philos[0].lock);
+		//i++;
+	//}
+	//return (1);
+//}
+
+//static void	full_exit(t_philo *philos)
+//{
+	//int	i;
+//
+	//i = 0;
+	//while (i < philos[0].arg->num_of_philos)
+	//{
+		//philos[i].loop = BREAK;
+		//pthread_detach(philos[i].philo);
+		//i++;
+	//}
+	//printf("full exit\n");
+//}
+
 void	*monitoring(void *arg)
 {
 	t_monitor	*monitor;
 	int			ret;
+	//int			flag;
 
 	usleep(200);
 	monitor = (t_monitor *)arg;
@@ -68,6 +106,15 @@ void	*monitoring(void *arg)
 			dead_exit(monitor->philos, ret);
 			break ;
 		}
+		//if (monitor->philos[0].arg->num_of_times_must_eat != NONE)
+		//{
+			//flag = eat_count_check(monitor);
+			//if (flag)
+			//{
+				//full_exit(monitor->philos);
+				//break ;
+			//}
+		//}
 		usleep(100);
 	}
 
