@@ -12,13 +12,26 @@
 
 #include "philo.h"
 
-static int		dead_check(t_monitor *monitor)
+
+static int		time_cmp(int dead_sec, int dead_msec)
 {
 	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	if (dead_sec < tv.tv_sec
+		|| (dead_sec == tv.tv_sec && dead_msec < (tv.tv_usec / 1000)))
+		return (1);
+	return (0);
+}
+
+static int		dead_check(t_monitor *monitor)
+{
 	int				num;
 	int				i;
 	int				dead_sec;
 	int				dead_msec;
+	int				ret;
+	int				id;
 
 	num = monitor->philos[0].arg->num_of_philos;
 	i = 0;
@@ -26,20 +39,26 @@ static int		dead_check(t_monitor *monitor)
 	{
 
 		pthread_mutex_lock(monitor->philos[i].lock);
+
 		dead_sec = monitor->philos[i].dead_sec;
 		dead_msec = monitor->philos[i].dead_msec;
+		
 		pthread_mutex_unlock(monitor->philos[i].lock);
+		ret = time_cmp(dead_sec, dead_msec);
+		if (ret)
+		{
+			id = i;
+			set_status_and_put_timestamp(&monitor->philos[i], id, DIE);
+		}
 
-		gettimeofday(&tv, NULL);
-		if (dead_sec < tv.tv_sec
-			|| (dead_sec == tv.tv_sec && dead_msec < (tv.tv_usec / 1000)))
-			return (i);
+		if (ret)
+			return (1);
 		i++;
 	}
-	return (-1);
+	return (0);
 }
 
-static void	dead_exit(t_philo *philos, int id)
+/*static void	dead_exit(t_philo *philos, int id)
 {
 	int	i;
 
@@ -51,7 +70,7 @@ static void	dead_exit(t_philo *philos, int id)
 		philos[i].loop = BREAK;
 		i++;
 	}
-}
+}*/
 
 //static int	eat_count_check(t_monitor *monitor)
 //{
@@ -101,11 +120,8 @@ void	*monitoring(void *arg)
 	while (1)
 	{
 		ret = dead_check(monitor);
-		if (ret >= 0)
-		{
-			dead_exit(monitor->philos, ret);
+		if (ret)
 			break ;
-		}
 		//if (monitor->philos[0].arg->num_of_times_must_eat != NONE)
 		//{
 			//flag = eat_count_check(monitor);

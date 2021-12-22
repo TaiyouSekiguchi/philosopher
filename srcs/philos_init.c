@@ -34,7 +34,7 @@ static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthrea
 			(*philos)[i].group = EVEN;
 		else
 			(*philos)[i].group = ODD;
-		(*philos)[i].loop = GO;
+		(*philos)[i].status = THINK;
 		(*philos)[i].eat_count = 0;
 		(*philos)[i].dead_sec = 0;
 		(*philos)[i].dead_msec = 0;

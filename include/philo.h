@@ -28,17 +28,18 @@
 typedef enum e_status
 {
 	THINK,
-	TAKEN,
+	TAKEN_LEFT,
+	TAKEN_RIGHT,
 	EAT,
 	SLEEP,
 	DIE,
 }			t_status;
 
-typedef enum e_loop
+typedef enum e_lr
 {
-	GO,
-	BREAK,
-}			t_loop;
+	LEFT,
+	RIGHT,
+}			t_lr;
 
 typedef enum e_group
 {
@@ -60,7 +61,7 @@ typedef struct s_philo
 	pthread_t		philo;
 	int				id;
 	int				group;
-	int				loop;
+	int				status;
 	int				eat_count;
 	int				dead_sec;
 	int				dead_msec;
@@ -69,13 +70,18 @@ typedef struct s_philo
 	pthread_mutex_t	*lock;
 }					t_philo;
 
-
 typedef struct s_monitor
 {
 	pthread_t	monitor;
 	t_philo		*philos;
 }				t_monitor;
 
+typedef struct s_fork
+{
+	int			left;
+	int			right;
+	int			hold_hand;
+}				t_fork;
 
 void	my_error(char *msg);
 void	argv_atoi(t_arg *arg, int argc, char *argv[]);

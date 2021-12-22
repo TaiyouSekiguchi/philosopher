@@ -23,12 +23,16 @@ static void	set_status(t_philo *philo, int status, char **msg)
 	}
 	else if (status == SLEEP)
 		*msg = "is sleeping";
-	else if (status == TAKEN)
+	else if (status == TAKEN_LEFT || status == TAKEN_RIGHT)
 		*msg = "has taken a fork";
 	else if (status == DIE)
 		*msg = "died";
 	else
 		*msg = "WHAT!!??";
+
+	pthread_mutex_lock(philo->lock);
+	philo->status = status;
+	pthread_mutex_unlock(philo->lock);
 }
 
 static void	put_timestamp(int id, char *msg)

@@ -12,69 +12,70 @@
 
 #include "philo.h"
 
-void	fork_set(int *left_fork, int *right_fork, int id, t_philo *philo)
+static void	fork_set(t_fork *fork, int id, t_philo *philo)
 {
-	*left_fork = id + 1;
-	*right_fork = id;
-	if (*left_fork == philo->arg->num_of_philos)
-		*left_fork = 0;
+	fork->left = id + 1;
+	fork->right = id;
+	if (fork->left == philo->arg->num_of_philos)
+		fork->left = 0;
+	fork->hold_hand = LEFT;
 }
 
 void	*philosopher(void *arg)
 {
 	t_philo			*philo;
 	int				id;
-	int				left_fork;
-	int				right_fork;
-	int				hand;
+	t_fork			fork;
 	int				local_status;
 
 	philo = (t_philo *)arg;
 	id = philo->id;
+
 	set_dead_time(philo);
 	set_status_and_put_timestamp(philo, id, THINK);
+	local_status = THINK;
 
-	fork_set(&left_fork, &right_fork, id, philo);
-	hand = LEFT;
+	fork_set(&fork, id, philo);
 
-	while (    )
+	while (local_status != DIE)
 	{
-		if (philo->group == EVEN)
-			usleep(200);
 
-		pthread_mutex_lock();
-		set_status();
-		pthread_mutex_unlock();
-
-		if (local_status == think)
+		if (local_status == THINK)
 		{
-			if (hand == LEFT)
-				get_fork(left);
-			else
-				get_fork(right);
+			if (philo->group == EVEN)
+				usleep(200);
+			get_fork(philo, id, fork.left);
+			local_status = TAKEN_LEFT;
 		}
-		else if (local_status == eat)
+		else if (local_status == TAKEN_LEFT)
 		{
-			usleep(time_to_eat * 1000);
+			get_fork(philo, id, fork.right);
+			local_status = TAKEN_RIGHT;
 		}
-		else if (local_status == sleep)
-			sleep_and_drop_fork();
-		else if (local_status == die)
+		else if (local_status == TAKEN_RIGHT)
+		{
+			local_status = EAT;
+		}
+		else if (local_status == EAT)
+		{
+			usleep(philo->arg->time_to_eat * 1000);
+			local_status = SLEEP;
+		}
+		else if (local_status == SLEEP)
+		{
+			sleep_and_drop_fork(philo, fork.left, fork.right);
+			local_status = THINK;
+		}
+		else if (local_status == DIE)
 			break ;
 
 
+		if (philo->status != DIE)
+			set_status_and_put_timestamp(philo, id, local_status);
+		else
+			local_status = DIE;
 
 
-		get_fork(philo, id, left_fork);
-		get_fork(philo, id, right_fork);
-
-		set_status_and_put_timestamp(philo, id, EAT);
-		usleep(philo->arg->time_to_eat * 1000);
-
-
-		sleep_and_drop_fork(philo, left_fork, right_fork);
-
-		set_status_and_put_timestamp(philo, id, THINK);
 	}
 
 	return (NULL);
