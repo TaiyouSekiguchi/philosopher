@@ -46,11 +46,13 @@ void	*philosopher(void *arg)
 			if (philo->group == EVEN)
 				usleep(200);
 			get_fork(philo, id, fork.left);
+			write_fork_array(philo, fork.left);
 			local_status = TAKEN_LEFT;
 		}
 		else if (local_status == TAKEN_LEFT)
 		{
 			get_fork(philo, id, fork.right);
+			write_fork_array(philo, fork.right);
 			local_status = TAKEN_RIGHT;
 		}
 		else if (local_status == TAKEN_RIGHT)
@@ -65,7 +67,9 @@ void	*philosopher(void *arg)
 		}
 		else if (local_status == SLEEP)
 		{
-			sleep_and_drop_fork(philo, fork.left, fork.right);
+			drop_fork(philo, fork.left, fork.right);
+			erase_fork_array(philo, fork.left, fork.right);
+			usleep(philo->arg->time_to_sleep * 1000);
 			local_status = THINK;
 		}
 

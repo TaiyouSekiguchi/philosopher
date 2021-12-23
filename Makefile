@@ -13,7 +13,7 @@
 PHILO			=	philo
 SRCS			=	main.c\
 					get_fork.c\
-					sleep_and_drop_fork.c\
+					drop_fork.c\
 					my_error.c\
 					philosopher.c\
 					set_status.c\
@@ -28,14 +28,16 @@ SRCS			=	main.c\
 					monitor_init.c\
 					fork_destroy.c\
 					philos_destroy.c\
-					do_pthread_create.c
+					do_pthread_create.c\
+					write_fork_array.c\
+					erase_fork_array.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
-#CFLAGS			+=	-fsanitize=thread -O1
-#CFLAGS			+=	-g
+CFLAGS			+=	-fsanitize=thread -O1
+CFLAGS			+=	-g
 INCLUDE			=	-I./include
 LIB				=	-lpthread -Llibft -lft
 RM				=	rm -f

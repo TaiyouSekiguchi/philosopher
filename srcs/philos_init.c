@@ -19,7 +19,7 @@ static void	do_malloc(t_philo **philos, int num)
 		my_error("Malloc failed in philo_data_init.");
 }
 
-static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock)
+static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock, int *fork_array)
 {
 	int	num;
 	int	i;
@@ -40,16 +40,17 @@ static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthrea
 		(*philos)[i].dead_msec = 0;
 		(*philos)[i].arg = arg;
 		(*philos)[i].fork = fork;
+		(*philos)[i].fork_array = fork_array;
 		(*philos)[i].lock = lock;
 		i++;
 	}
 }
 
-void	philos_init(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock)
+void	philos_init(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock, int *fork_array)
 {
 	int	num;
 
 	num = arg->num_of_philos;
 	do_malloc(philos, num);
-	data_set(philos, arg, fork, lock);
+	data_set(philos, arg, fork, lock, fork_array);
 }

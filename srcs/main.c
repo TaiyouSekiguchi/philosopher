@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	t_monitor			monitor;
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		lock;
+	int					*fork_array;
 	int					i;
 
 	if (argc < 5 || argc > 6)
@@ -26,8 +27,17 @@ int	main(int argc, char *argv[])
 
 	argv_atoi(&arg, argc, argv);
 	fork_init(&fork, arg.num_of_philos);
+	
+	fork_array = (int *)malloc(sizeof(int) * arg.num_of_philos);
+	i = 0;
+	while (i < arg.num_of_philos)
+	{
+		fork_array[i] = 0;
+		i++;
+	}
+
 	pthread_mutex_init(&lock, NULL);
-	philos_init(&philos, &arg, fork, &lock);
+	philos_init(&philos, &arg, fork, &lock, fork_array);
 	monitor_init(&monitor, philos);
 
 	do_pthread_create(philos, &monitor);
@@ -43,6 +53,8 @@ int	main(int argc, char *argv[])
 	philos_destroy(&philos);
 	fork_destroy(&fork, arg.num_of_philos);
 	pthread_mutex_destroy(&lock);
+	
+	free(fork_array);
 
 	printf("Philosopher is finish\n");
 	return (0);
