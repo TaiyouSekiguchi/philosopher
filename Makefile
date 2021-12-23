@@ -16,11 +16,14 @@ SRCS			=	main.c\
 					sleep_and_drop_fork.c\
 					my_error.c\
 					philosopher.c\
-					set_status_and_put_timestamp.c\
+					set_status.c\
+					get_status.c\
+					put_timestamp.c\
 					argv_atoi.c\
 					fork_init.c\
 					philos_init.c\
 					set_dead_time.c\
+					get_dead_time.c\
 					monitoring.c\
 					monitor_init.c\
 					fork_destroy.c\
@@ -30,7 +33,7 @@ OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror -lpthread
+CFLAGS			=	-Wall -Wextra -Werror
 #CFLAGS			+=	-fsanitize=thread -O1
 #CFLAGS			+=	-g
 INCLUDE			=	-I./include

@@ -27,19 +27,20 @@ void	*philosopher(void *arg)
 	int				id;
 	t_fork			fork;
 	int				local_status;
+	int				tmp_status;
 
 	philo = (t_philo *)arg;
 	id = philo->id;
 
-	set_dead_time(philo);
-	set_status_and_put_timestamp(philo, id, THINK);
-	local_status = THINK;
-
+	//printf("philo[%d] get ready\n", id);
+	//set_dead_time(philo);
+	set_status(philo, THINK);
+	put_timestamp(id, THINK);
 	fork_set(&fork, id, philo);
 
-	while (local_status != DIE)
+	while (1)
 	{
-
+		get_status(philo, &local_status);
 		if (local_status == THINK)
 		{
 			if (philo->group == EVEN)
@@ -58,6 +59,7 @@ void	*philosopher(void *arg)
 		}
 		else if (local_status == EAT)
 		{
+			set_dead_time(philo);
 			usleep(philo->arg->time_to_eat * 1000);
 			local_status = SLEEP;
 		}
@@ -66,17 +68,16 @@ void	*philosopher(void *arg)
 			sleep_and_drop_fork(philo, fork.left, fork.right);
 			local_status = THINK;
 		}
-		else if (local_status == DIE)
+
+		get_status(philo, &tmp_status);
+		if (tmp_status == DIE || tmp_status == FUNERAL)
 			break ;
-
-
-		if (philo->status != DIE)
-			set_status_and_put_timestamp(philo, id, local_status);
 		else
-			local_status = DIE;
-
-
+		{
+			set_status(philo, local_status);
+			put_timestamp(id, local_status);
+		}
 	}
-
+	printf("philo[%d] is exit\n", id);
 	return (NULL);
 }

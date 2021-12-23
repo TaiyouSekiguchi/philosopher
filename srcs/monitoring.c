@@ -12,7 +12,6 @@
 
 #include "philo.h"
 
-
 static int		time_cmp(int dead_sec, int dead_msec)
 {
 	struct timeval	tv;
@@ -37,102 +36,55 @@ static int		dead_check(t_monitor *monitor)
 	i = 0;
 	while (i < num)
 	{
-
-		pthread_mutex_lock(monitor->philos[i].lock);
-
-		dead_sec = monitor->philos[i].dead_sec;
-		dead_msec = monitor->philos[i].dead_msec;
-		
-		pthread_mutex_unlock(monitor->philos[i].lock);
+		get_dead_time(&monitor->philos[i], &dead_sec, &dead_msec);
 		ret = time_cmp(dead_sec, dead_msec);
 		if (ret)
 		{
 			id = i;
-			set_status_and_put_timestamp(&monitor->philos[i], id, DIE);
-		}
-
-		if (ret)
+			set_status(&monitor->philos[id], DIE);
+			put_timestamp(id, DIE);
+			i = 0;
+			while (i < num)
+			{
+				set_status(&monitor->philos[i], DIE);
+				i++;
+			}
 			return (1);
+		}
 		i++;
 	}
 	return (0);
 }
 
-/*static void	dead_exit(t_philo *philos, int id)
+void	set_dead_time_all(t_monitor *monitor)
 {
-	int	i;
+	int		num;
+	int		i;
 
-	set_status_and_put_timestamp(philos, id, DIE);
+	num = monitor->philos[0].arg->num_of_philos;
 	i = 0;
-	while (i < philos[0].arg->num_of_philos)
+	while (i < num)
 	{
-		pthread_detach(philos[i].philo);
-		philos[i].loop = BREAK;
+		set_dead_time(&monitor->philos[i]);
 		i++;
 	}
-}*/
-
-//static int	eat_count_check(t_monitor *monitor)
-//{
-	//int				num;
-	//int				i;
-	//int				tmp;
-//
-	//num = monitor->philos[0].arg->num_of_philos;
-	//i = 0;
-	//while (i < num)
-	//{
-		//pthread_mutex_lock(monitor->philos[0].lock);
-		//tmp = monitor->philos[i].eat_count;
-		//if (tmp < monitor->philos[i].arg->num_of_times_must_eat)
-		//{
-			//pthread_mutex_unlock(monitor->philos[0].lock);
-			//return (0);
-		//}
-		//pthread_mutex_unlock(monitor->philos[0].lock);
-		//i++;
-	//}
-	//return (1);
-//}
-
-//static void	full_exit(t_philo *philos)
-//{
-	//int	i;
-//
-	//i = 0;
-	//while (i < philos[0].arg->num_of_philos)
-	//{
-		//philos[i].loop = BREAK;
-		//pthread_detach(philos[i].philo);
-		//i++;
-	//}
-	//printf("full exit\n");
-//}
+}
 
 void	*monitoring(void *arg)
 {
 	t_monitor	*monitor;
-	int			ret;
-	//int			flag;
 
-	usleep(200);
+	//printf("monitor get ready\n");
 	monitor = (t_monitor *)arg;
+	set_dead_time_all(monitor);
+	usleep(1000);
 	while (1)
 	{
-		ret = dead_check(monitor);
-		if (ret)
+		if (dead_check(monitor))
 			break ;
-		//if (monitor->philos[0].arg->num_of_times_must_eat != NONE)
-		//{
-			//flag = eat_count_check(monitor);
-			//if (flag)
-			//{
-				//full_exit(monitor->philos);
-				//break ;
-			//}
-		//}
 		usleep(100);
 	}
 
+	printf("monitor is exit\n");
 	return (NULL);
 }

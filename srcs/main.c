@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	t_monitor			monitor;
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		lock;
+	int					i;
 
 	if (argc < 5 || argc > 6)
 		my_error("argc is incorrect.");
@@ -31,10 +32,15 @@ int	main(int argc, char *argv[])
 
 	do_pthread_create(philos, &monitor);
 
+	i = 0;
+	while (i < arg.num_of_philos)
+	{
+		pthread_join(philos[i].philo, NULL);
+		i++;
+	}
 	pthread_join(monitor.monitor, NULL);
 
 	philos_destroy(&philos);
-
 	fork_destroy(&fork, arg.num_of_philos);
 	pthread_mutex_destroy(&lock);
 

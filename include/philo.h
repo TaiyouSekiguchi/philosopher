@@ -33,6 +33,7 @@ typedef enum e_status
 	EAT,
 	SLEEP,
 	DIE,
+	FUNERAL,
 }			t_status;
 
 typedef enum e_lr
@@ -90,10 +91,17 @@ void	fork_destroy(pthread_mutex_t **fork, int num);
 void	philos_init(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock);
 void	*philosopher(void *arg);
 void	set_dead_time(t_philo *philo);
+void	get_dead_time(t_philo *philo, int *dead_sec, int *dead_msec);
 
 void	get_fork(t_philo *philo, int id, int fork_id);
 void	sleep_and_drop_fork(t_philo *philo, int left_fork ,int right_fork);
-void	set_status_and_put_timestamp(t_philo *philo, int id, int status);
+
+
+void	set_status(t_philo *philo, int status);
+void	get_status(t_philo *philo, int *status);
+void	put_timestamp(int id, int status);
+
+
 void	*monitoring(void *arg);
 void	monitor_init(t_monitor *monitor, t_philo *philos);
 void	philos_destroy(t_philo **philos);
