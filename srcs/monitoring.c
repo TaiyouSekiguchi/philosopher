@@ -23,7 +23,7 @@ static int		time_cmp(int dead_sec, int dead_msec)
 	return (0);
 }
 
-static void	check_fork_array(t_philo *philo)
+/*static void	check_fork_array(t_philo *philo)
 {
 	int	num;
 	int	i;
@@ -37,11 +37,12 @@ static void	check_fork_array(t_philo *philo)
 		if (philo->fork_array[i] == 1)
 		{
 			pthread_mutex_unlock(&philo->fork[i]);
+			philo->fork_array[i] = 0;
 		}
 		i++;
 	}
 	pthread_mutex_unlock(philo->lock);
-}
+}*/
 
 static int		dead_check(t_monitor *monitor)
 {
@@ -69,7 +70,7 @@ static int		dead_check(t_monitor *monitor)
 				set_status(&monitor->philos[i], DIE);
 				i++;
 			}
-			check_fork_array(&monitor->philos[0]);
+			//check_fork_array(&monitor->philos[0]);
 			return (1);
 		}
 		i++;

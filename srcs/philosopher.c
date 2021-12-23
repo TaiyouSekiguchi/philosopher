@@ -75,7 +75,13 @@ void	*philosopher(void *arg)
 
 		get_status(philo, &tmp_status);
 		if (tmp_status == DIE || tmp_status == FUNERAL)
+		{
+			if (philo->fork_array[fork.left] == id)
+				pthread_mutex_unlock(&philo->fork[fork.left]);
+			if (philo->fork_array[fork.right] == id)
+				pthread_mutex_unlock(&philo->fork[fork.right]);
 			break ;
+		}
 		else
 		{
 			set_status(philo, local_status);

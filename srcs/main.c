@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (i < arg.num_of_philos)
 	{
-		fork_array[i] = 0;
+		fork_array[i] = -1;
 		i++;
 	}
 
