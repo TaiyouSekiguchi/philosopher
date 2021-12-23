@@ -28,7 +28,7 @@ static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthrea
 	i = 0;
 	while (i < num)
 	{
-		(*philos)[i].philo = NULL;
+		(*philos)[i].philo = 0;
 		(*philos)[i].id = i;
 		if (i % 2 == 0)
 			(*philos)[i].group = EVEN;

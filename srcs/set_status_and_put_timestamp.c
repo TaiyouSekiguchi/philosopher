@@ -40,7 +40,7 @@ static void	put_timestamp(int id, char *msg)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	printf("%ld%03u %d %s\n", tv.tv_sec, tv.tv_usec / 1000, id, msg);
+	printf("%ld%03lu %d %s\n", tv.tv_sec, tv.tv_usec / 1000, id, msg);
 }
 
 void	set_status_and_put_timestamp(t_philo *philo, int id, int status)

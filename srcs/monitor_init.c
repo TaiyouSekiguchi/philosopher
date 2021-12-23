@@ -14,6 +14,6 @@
 
 void	monitor_init(t_monitor *monitor, t_philo *philos)
 {
-	monitor->monitor = NULL;
+	monitor->monitor = 0;
 	monitor->philos = philos;
 }
