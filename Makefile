@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/26 21:12:00 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/26 22:38:16 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
-CFLAGS			+=	 -g -fsanitize=thread -O1
+#CFLAGS			+=	 -g -fsanitize=thread -O1
 INCLUDE			=	-I./include
 LIB				=	-lpthread -Llibft -lft
 RM				=	rm -f
