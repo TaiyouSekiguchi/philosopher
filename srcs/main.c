@@ -14,47 +14,45 @@
 
 int	main(int argc, char *argv[])
 {
-	t_arg				arg;
+	t_arg				args;
 	t_philo				*philos;
 	t_monitor			monitor;
-	pthread_mutex_t		*fork;
+	t_fork				forks;
 	pthread_mutex_t		lock;
-	int					*fork_array;
-	int					i;
 
 	if (argc < 5 || argc > 6)
-		my_error("argc is incorrect.");
-
-	argv_atoi(&arg, argc, argv);
-	fork_init(&fork, arg.num_of_philos);
-	
-	fork_array = (int *)malloc(sizeof(int) * arg.num_of_philos);
-	i = 0;
-	while (i < arg.num_of_philos)
 	{
-		fork_array[i] = -1;
-		i++;
+		ft_putendl_fd("arg is incorrect.", STDERR_FILENO);
+		return (1);
 	}
+	printf("chech 0\n");
 
-	pthread_mutex_init(&lock, NULL);
-	philos_init(&philos, &arg, fork, &lock, fork_array);
+	if (!argv_atoi(&args, argc, argv))
+		return (1);
+	printf("chech 1\n");
+	if (!fork_init(&forks, args.num_of_philos))
+		return (1);
+	printf("chech 2\n");
+	if (pthread_mutex_init(&lock, NULL) == -1)
+		return (1);
+	printf("chech 3\n");
+	if (!philos_init(&philos, &args, &forks, &lock))
+		return (1);
+	printf("chech 4\n");
 	monitor_init(&monitor, philos);
-
-	do_pthread_create(philos, &monitor);
-
-	i = 0;
-	while (i < arg.num_of_philos)
-	{
-		pthread_join(philos[i].philo, NULL);
-		i++;
-	}
-	pthread_join(monitor.monitor, NULL);
-
-	philos_destroy(&philos);
-	fork_destroy(&fork, arg.num_of_philos);
-	pthread_mutex_destroy(&lock);
-	
-	free(fork_array);
+	if (!do_pthread_create(philos, &monitor))
+		return (1);
+	printf("chech 5\n");
+	if (!do_pthread_join(philos, &monitor))
+		return (1);
+	printf("chech 6\n");
+	if (!fork_destroy(&forks, args.num_of_philos))
+		return (1);
+	printf("chech 7\n");
+	if (pthread_mutex_destroy(&lock) == -1)
+		return (1);
+	printf("chech 8\n");
+	free(philos);
 
 	printf("Philosopher is finish\n");
 	return (0);

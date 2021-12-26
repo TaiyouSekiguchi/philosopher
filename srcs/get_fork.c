@@ -12,10 +12,7 @@
 
 #include "philo.h"
 
-void	get_fork(t_philo *philo, int id, int fork_id)
+void	get_fork(t_philo *philo, int fork_id)
 {
-	(void)id;
-	if (pthread_mutex_lock(&philo->fork[fork_id]) != 0)
-		printf("pthread_mutex_lock failed in get_fork\n");
-	//set_status_and_put_timestamp(philo, id, TAKEN);
+	pthread_mutex_lock(&philo->forks->forks[fork_id]);
 }

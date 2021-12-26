@@ -12,15 +12,18 @@
 
 #include "philo.h"
 
-void	fork_destroy(pthread_mutex_t **fork, int num)
+int	fork_destroy(t_fork *forks, int num)
 {
 	int		i;
 
 	i = 0;
 	while (i < num)
 	{
-		pthread_mutex_destroy(&(*fork)[i]);
+		if (pthread_mutex_destroy(&forks->forks[i]) == -1)
+			return (FAILURE);
 		i++;
 	}
-	free(*fork);
+	free(forks->forks);
+	free(forks->fork_flags);
+	return (SUCCESS);
 }

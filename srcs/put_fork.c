@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_status.c                                       :+:      :+:    :+:   */
+/*   put_fork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 11:12:35 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/24 11:12:58 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/12/24 11:51:27 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/24 11:51:31 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	get_status(t_philo *philo, int *status)
+static void	get_fork_flag(t_philo *philo, int fork_position, int *l_fork_flag)
 {
 	pthread_mutex_lock(philo->lock);
-	*status = philo->status;
+	*l_fork_flag = philo->forks->fork_flags[fork_position];
 	pthread_mutex_unlock(philo->lock);
+}
+
+void	put_fork(t_philo *philo, t_hand *hand, int id)
+{
+	int	local_fork_flag;
+
+	get_fork_flag(philo, hand->left, &local_fork_flag);
+	if (local_fork_flag == id)
+		pthread_mutex_unlock(&philo->forks->forks[hand->left]);
+	get_fork_flag(philo, hand->right, &local_fork_flag);
+	if (local_fork_flag == id)
+		pthread_mutex_unlock(&philo->forks->forks[hand->right]);
 }

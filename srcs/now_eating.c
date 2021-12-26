@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_destroy.c                                   :+:      :+:    :+:   */
+/*   now_eating.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
+/*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 10:51:44 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 15:27:52 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/12/24 11:04:11 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/24 11:04:25 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philos_destroy(t_philo **philos)
+void	now_eating(int time_to_eat)
 {
-	free(*philos);
+	usleep(time_to_eat * 1000);
 }

@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_error.c                                         :+:      :+:    :+:   */
+/*   now_sleeping.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
+/*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 12:48:24 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/16 12:48:40 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/12/24 11:11:08 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/24 11:11:39 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	my_error(char *msg)
+void	now_sleeping(int time_to_sleep)
 {
-	ft_putendl_fd("Error", STDERR_FILENO);
-	ft_putendl_fd(msg, STDERR_FILENO);
-	exit(1);
+	usleep(time_to_sleep * 1000);
 }

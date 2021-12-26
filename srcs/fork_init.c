@@ -12,21 +12,53 @@
 
 #include "philo.h"
 
-void	fork_init(pthread_mutex_t **fork, int num)
+static int	forks_part(pthread_mutex_t **forks, int num)
 {
-	int		i;
+	*forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
+	if (*forks == NULL)
+		return (FAILURE);
+	return (SUCCESS);
+}
 
-	*fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
-	if (*fork == NULL)
-		my_error("Malloc failed in fork_init.");
+static int	fork_flags_part(int **fork_flags, int num)
+{
+	*fork_flags = (int *)malloc(sizeof(pthread_mutex_t) * num);
+	if (*fork_flags == NULL)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+static int	forks_set(t_fork *forks, int num)
+{
+	int	i;
+
 	i = 0;
 	while (i < num)
 	{
-		if (pthread_mutex_init(&(*fork)[i], NULL) == -1)
+		if (pthread_mutex_init(&forks->forks[i], NULL) == -1)
 		{
-			free(*fork);
-			my_error("pthread_mutex_init failed in fork_init");
+			free(forks->forks);
+			return (FAILURE);
 		}
+		forks->fork_flags[i] = -1;
 		i++;
 	}
+	return (SUCCESS);
+}
+
+int	fork_init(t_fork *forks, int num)
+{
+	if (!forks_part(&forks->forks, num))
+		return (FAILURE);
+	if (!fork_flags_part(&forks->fork_flags, num))
+	{
+		free(forks->forks);
+		return (FAILURE);
+	}
+	if (!forks_set(forks, num))
+	{
+		free(forks->forks);
+		return (FAILURE);
+	}
+	return (SUCCESS);
 }

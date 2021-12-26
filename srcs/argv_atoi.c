@@ -12,26 +12,31 @@
 
 #include "philo.h"
 
-void	argv_atoi(t_arg *arg, int argc, char *argv[])
+int	argv_atoi(t_arg *args, int argc, char *argv[])
 {
-	arg->num_of_philos = ft_atoi(argv[1]);
-	if (arg->num_of_philos <= 0)
-		my_error("And then there were none...");
+	args->num_of_philos = ft_atoi(argv[1]);
+	if (args->num_of_philos <= 0)
+		return (FAILURE);
 
-	arg->time_to_die = ft_atoi(argv[2]);
-	arg->time_to_eat = ft_atoi(argv[3]);
-	arg->time_to_sleep = ft_atoi(argv[4]);
-	if (arg->time_to_die < 0
-		|| arg->time_to_eat < 0
-		|| arg->time_to_sleep < 0)
-		my_error("Time is negative");
+	printf("a 0\n");
+	args->time_to_die = ft_atoi(argv[2]);
+	args->time_to_eat = ft_atoi(argv[3]);
+	args->time_to_sleep = ft_atoi(argv[4]);
+	if (args->time_to_die < 0
+		|| args->time_to_eat < 0
+		|| args->time_to_sleep < 0)
+		return (FAILURE);
+	printf("a 1\n");
 
 	if (argc == 6)
 	{
-		arg->num_of_times_must_eat = ft_atoi(argv[5]);
-		if (arg->num_of_times_must_eat < 0)
-			my_error("Num_of_times_must_eat is negative");
+		args->num_of_times_must_eat = ft_atoi(argv[5]);
+		if (args->num_of_times_must_eat < 0)
+			return (FAILURE);
 	}
 	else
-		arg->num_of_times_must_eat = NONE;
+		args->num_of_times_must_eat = NONE;
+	
+	printf("a 2\n");
+	return (SUCCESS);
 }

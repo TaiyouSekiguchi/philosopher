@@ -12,18 +12,21 @@
 
 #include "philo.h"
 
-void	do_pthread_create(t_philo *philos, t_monitor *monitor)
+int	do_pthread_create(t_philo *philos, t_monitor *monitor)
 {
 	int	num;
 	int	i;
 
-	num = philos[0].arg->num_of_philos;
+	num = philos[0].args->num_of_philos;
 	i = 0;
 	while (i < num)
 	{
-		pthread_create(&philos[i].philo, NULL, philosopher, &philos[i]);
+		if (pthread_create(&philos[i].philo, NULL, philosopher, &philos[i]) == -1)
+			return (FAILURE);
 		i++;
 	}
 
-	pthread_create(&monitor->monitor, NULL, monitoring, monitor);
+	if (pthread_create(&monitor->monitor, NULL, monitoring, monitor) == -1)
+		return (FAILURE);
+	return (SUCCESS);
 }

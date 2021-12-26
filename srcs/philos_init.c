@@ -12,19 +12,20 @@
 
 #include "philo.h"
 
-static void	do_malloc(t_philo **philos, int num)
+static int	do_malloc(t_philo **philos, int num)
 {
 	*philos = (t_philo *)malloc(sizeof(t_philo) * num);
 	if (*philos == NULL)
-		my_error("Malloc failed in philo_data_init.");
+		return (FAILURE);
+	return (SUCCESS);
 }
 
-static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock, int *fork_array)
+static void	data_set(t_philo **philos, t_arg *args, t_fork *forks, pthread_mutex_t *lock)
 {
 	int	num;
 	int	i;
 
-	num = arg->num_of_philos;
+	num = args->num_of_philos;
 	i = 0;
 	while (i < num)
 	{
@@ -36,21 +37,22 @@ static void	data_set(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthrea
 			(*philos)[i].group = ODD;
 		(*philos)[i].status = THINK;
 		(*philos)[i].eat_count = 0;
-		(*philos)[i].dead_sec = 0;
-		(*philos)[i].dead_msec = 0;
-		(*philos)[i].arg = arg;
-		(*philos)[i].fork = fork;
-		(*philos)[i].fork_array = fork_array;
+		(*philos)[i].dead.sec = 0;
+		(*philos)[i].dead.msec = 0;
+		(*philos)[i].args = args;
+		(*philos)[i].forks = forks;
 		(*philos)[i].lock = lock;
 		i++;
 	}
 }
 
-void	philos_init(t_philo **philos, t_arg *arg, pthread_mutex_t *fork, pthread_mutex_t *lock, int *fork_array)
+int	philos_init(t_philo **philos, t_arg *args, t_fork *forks, pthread_mutex_t *lock)
 {
 	int	num;
 
-	num = arg->num_of_philos;
-	do_malloc(philos, num);
-	data_set(philos, arg, fork, lock, fork_array);
+	num = args->num_of_philos;
+	if (!do_malloc(philos, num))
+		return (FAILURE);
+	data_set(philos, args, forks, lock);
+	return (SUCCESS);
 }
