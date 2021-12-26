@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/26 17:46:07 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 22:07:15 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define NONE -1
 # define OFF -1
 
-typedef pthread_mutex_t t_lock;
+typedef pthread_mutex_t t_mtx;
 
 typedef enum e_result
 {
@@ -51,6 +51,12 @@ typedef enum e_group
 	ODD,
 }			t_group;
 
+typedef enum e_handling
+{
+	EMPTY,
+	HOLD,
+}			t_handling;
+
 typedef enum e_doa
 {
 	DEAD,
@@ -68,50 +74,61 @@ typedef struct s_arg
 
 typedef struct s_fork
 {
-	pthread_mutex_t	*forks;
-	int				*fork_flags;
-}					t_fork;
+	t_mtx		*forks;
+	int			*fork_flags;
+}				t_fork;
+
+typedef struct s_lock
+{
+	t_mtx		*locks;
+	t_mtx		common_lock;
+}				t_lock;
 
 typedef struct s_time
 {
-	long			sec;
-	long			msec;
-}					t_time;
+	long		sec;
+	long		msec;
+}				t_time;
 
 typedef struct s_philo
 {
-	pthread_t		philo;
-	int				id;
-	int				group;
-	int				status;
-	int				eat_count;
-	t_time			dead;
-	t_fork			*forks;
-	t_arg			*args;
-	pthread_mutex_t	*lock;
-}					t_philo;
+	pthread_t	philo;
+	int			id;
+	int			group;
+	int			status;
+	int			eat_count;
+	t_time		dead;
+	t_fork		*forks;
+	t_arg		*args;
+	t_mtx		*lock;
+	t_mtx		*common_lock;
+}				t_philo;
 
 typedef struct s_monitor
 {
-	pthread_t		monitor;
-	t_philo			*philos;
-}					t_monitor;
+	pthread_t	monitor;
+	t_philo		*philos;
+}				t_monitor;
 
 typedef struct s_hand
 {
-	int				left;
-	int				right;
-}					t_hand;
+	int			left;
+	int			right;
+	int			left_status;
+	int			right_status;
+}				t_hand;
 
 
 void	add_eat_count(t_philo *philo);
 int		argv_atoi(t_arg *arg, int argc, char *argv[]);
 int		fork_init(t_fork *forks, int num);
+int		lock_init(t_lock *locks, int num);
 int		philos_init(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock);
 void	monitor_init(t_monitor *monitor, t_philo *philos);
 int		do_pthread_create(t_philo *philos, t_monitor *monitor);
 int		do_pthread_join(t_philo *philos, t_monitor *monitor);
 int		fork_destroy(t_fork *forks, int num);
+int		lock_destroy(t_lock *locks, int num);
 void	*philosopher(void *arg);
 void	*monitoring(void *arg);
 void	put_timestamp(int id, int status);

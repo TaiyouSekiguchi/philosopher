@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/26 17:45:10 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 22:07:57 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	hand_set(t_hand *hand, int id, t_philo *philo)
 	hand->right = id;
 	if (hand->left == philo->args->num_of_philos)
 		hand->left = 0;
+	hand->left_status = EMPTY;
+	hand->right_status = EMPTY;
 }
 
 void	*philosopher(void *arg)
@@ -43,7 +45,8 @@ void	*philosopher(void *arg)
 			if (philo->group == EVEN)
 				usleep(200);
 			get_fork(philo, hand.left);
-			on_fork_flag(philo, hand.left);
+			hand.left_status = HOLD;
+			//on_fork_flag(philo, hand.left);
 			local_status = TAKEN_LEFT;
 		}
 		else if (local_status == TAKEN_LEFT)
@@ -51,7 +54,8 @@ void	*philosopher(void *arg)
 			if (philo->args->num_of_philos != 1)
 			{
 				get_fork(philo, hand.right);
-				on_fork_flag(philo, hand.right);
+				hand.right_status = HOLD;
+				//on_fork_flag(philo, hand.right);
 				local_status = TAKEN_RIGHT;
 			}
 			else
@@ -71,7 +75,9 @@ void	*philosopher(void *arg)
 		else if (local_status == SLEEP)
 		{
 			drop_fork(philo, hand.left, hand.right);
-			off_fork_flag(philo, hand.left, hand.right);
+			hand.left_status = EMPTY;
+			hand.right_status = EMPTY;
+			//off_fork_flag(philo, hand.left, hand.right);
 			now_sleeping(philo->args->time_to_sleep);
 			local_status = THINK;
 		}

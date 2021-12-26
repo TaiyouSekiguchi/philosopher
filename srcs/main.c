@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/26 16:19:37 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 21:09:52 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (!fork_init(&forks, args.num_of_philos))
 		return (1);
-	if (pthread_mutex_init(&lock, NULL) == -1)
+	if (!lock_init(&lock, args.num_of_philos))
 		return (1);
 	if (!philos_init(&philos, &args, &forks, &lock))
 		return (1);
@@ -40,7 +40,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (!fork_destroy(&forks, args.num_of_philos))
 		return (1);
-	if (pthread_mutex_destroy(&lock) == -1)
+	if (!lock_destroy(&lock, args.num_of_philos))
 		return (1);
 	free(philos);
 

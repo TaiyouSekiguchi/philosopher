@@ -6,15 +6,15 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:19:49 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 12:05:14 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:33:53 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	forks_part(pthread_mutex_t **forks, int num)
+static int	forks_part(t_mtx **forks, int num)
 {
-	*forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
+	*forks = (t_mtx *)malloc(sizeof(t_mtx) * num);
 	if (*forks == NULL)
 		return (FAILURE);
 	return (SUCCESS);
@@ -22,7 +22,7 @@ static int	forks_part(pthread_mutex_t **forks, int num)
 
 static int	fork_flags_part(int **fork_flags, int num)
 {
-	*fork_flags = (int *)malloc(sizeof(pthread_mutex_t) * num);
+	*fork_flags = (int *)malloc(sizeof(t_mtx) * num);
 	if (*fork_flags == NULL)
 		return (FAILURE);
 	return (SUCCESS);
