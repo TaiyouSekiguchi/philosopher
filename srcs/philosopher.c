@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/24 11:54:15 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 15:35:01 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ void	*philosopher(void *arg)
 				usleep(200);
 			get_fork(philo, hand.left);
 			on_fork_flag(philo, hand.left);
-			local_status = TAKEN_LEFT;
+			if (philo->args->num_of_philos != 1)
+				local_status = TAKEN_LEFT;
+			else
+				local_status = DIE;
+		
 		}
 		else if (local_status == TAKEN_LEFT)
 		{
@@ -71,7 +75,7 @@ void	*philosopher(void *arg)
 		}
 
 		get_status(philo, &tmp_status);
-		if (tmp_status == DIE)
+		if (tmp_status == DIE || local_status == DIE)
 		{
 			put_fork(philo, &hand, id);
 			break ;

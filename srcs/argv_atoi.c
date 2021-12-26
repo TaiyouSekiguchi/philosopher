@@ -18,7 +18,6 @@ int	argv_atoi(t_arg *args, int argc, char *argv[])
 	if (args->num_of_philos <= 0)
 		return (FAILURE);
 
-	printf("a 0\n");
 	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]);
 	args->time_to_sleep = ft_atoi(argv[4]);
@@ -26,7 +25,6 @@ int	argv_atoi(t_arg *args, int argc, char *argv[])
 		|| args->time_to_eat < 0
 		|| args->time_to_sleep < 0)
 		return (FAILURE);
-	printf("a 1\n");
 
 	if (argc == 6)
 	{
@@ -37,6 +35,5 @@ int	argv_atoi(t_arg *args, int argc, char *argv[])
 	else
 		args->num_of_times_must_eat = NONE;
 	
-	printf("a 2\n");
 	return (SUCCESS);
 }
