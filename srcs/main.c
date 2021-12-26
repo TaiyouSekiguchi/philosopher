@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/21 16:39:22 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 16:19:37 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	main(int argc, char *argv[])
 {
-	t_arg				args;
-	t_philo				*philos;
-	t_monitor			monitor;
-	t_fork				forks;
-	pthread_mutex_t		lock;
+	t_arg		args;
+	t_philo		*philos;
+	t_monitor	monitor;
+	t_fork		forks;
+	t_lock		lock;
 
 	if (argc < 5 || argc > 6)
 	{

@@ -1,0 +1,41 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+all_status_die	dead_or_alive.c	/^static void	all_status_die(t_monitor *monitor, int num)$/;"	f	typeref:typename:void	file:
+argv_atoi	argv_atoi.c	/^int	argv_atoi(t_arg *args, int argc, char *argv[])$/;"	f	typeref:typename:int
+dead_or_alive	dead_or_alive.c	/^int		dead_or_alive(t_monitor *monitor, int num)$/;"	f	typeref:typename:int
+do_malloc	philos_init.c	/^static int	do_malloc(t_philo **philos, int num)$/;"	f	typeref:typename:int	file:
+do_pthread_create	do_pthread_create.c	/^int	do_pthread_create(t_philo *philos, t_monitor *monitor)$/;"	f	typeref:typename:int
+do_pthread_join	do_pthread_join.c	/^int	do_pthread_join(t_philo *philos, t_monitor *monitor)$/;"	f	typeref:typename:int
+do_set	philos_init.c	/^static void	do_set(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock)$/;"	f	typeref:typename:void	file:
+drop_fork	drop_fork.c	/^void	drop_fork(t_philo *philo, int left_fork, int right_fork)$/;"	f	typeref:typename:void
+first_dead_time_set	monitoring.c	/^static void	first_dead_time_set(t_monitor *monitor, int num)$/;"	f	typeref:typename:void	file:
+fork_destroy	fork_destroy.c	/^int	fork_destroy(t_fork *forks, int num)$/;"	f	typeref:typename:int
+fork_flags_part	fork_init.c	/^static int	fork_flags_part(int **fork_flags, int num)$/;"	f	typeref:typename:int	file:
+fork_init	fork_init.c	/^int	fork_init(t_fork *forks, int num)$/;"	f	typeref:typename:int
+forks_part	fork_init.c	/^static int	forks_part(pthread_mutex_t **forks, int num)$/;"	f	typeref:typename:int	file:
+forks_set	fork_init.c	/^static int	forks_set(t_fork *forks, int num)$/;"	f	typeref:typename:int	file:
+get_dead_time	dead_or_alive.c	/^static void	get_dead_time(t_philo *philo, t_time *l_dead)$/;"	f	typeref:typename:void	file:
+get_fork	get_fork.c	/^void	get_fork(t_philo *philo, int fork_id)$/;"	f	typeref:typename:void
+get_fork_flag	put_fork.c	/^static void	get_fork_flag(t_philo *philo, int fork_position, int *l_fork_flag)$/;"	f	typeref:typename:void	file:
+get_status	get_status.c	/^void	get_status(t_philo *philo, int *status)$/;"	f	typeref:typename:void
+hand_set	philosopher.c	/^static void	hand_set(t_hand *hand, int id, t_philo *philo)$/;"	f	typeref:typename:void	file:
+main	main.c	/^int	main(int argc, char *argv[])$/;"	f	typeref:typename:int
+monitor_init	monitor_init.c	/^void	monitor_init(t_monitor *monitor, t_philo *philos)$/;"	f	typeref:typename:void
+monitoring	monitoring.c	/^void	*monitoring(void *arg)$/;"	f	typeref:typename:void *
+now_eating	now_eating.c	/^void	now_eating(int time_to_eat)$/;"	f	typeref:typename:void
+now_sleeping	now_sleeping.c	/^void	now_sleeping(int time_to_sleep)$/;"	f	typeref:typename:void
+off_fork_flag	off_fork_flag.c	/^void	off_fork_flag(t_philo *philo, int left_fork, int right_fork)$/;"	f	typeref:typename:void
+on_fork_flag	on_fork_flag.c	/^void	on_fork_flag(t_philo *philo, int fork_position)$/;"	f	typeref:typename:void
+philos_init	philos_init.c	/^int	philos_init(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock)$/;"	f	typeref:typename:int
+philosopher	philosopher.c	/^void	*philosopher(void *arg)$/;"	f	typeref:typename:void *
+put_fork	put_fork.c	/^void	put_fork(t_philo *philo, t_hand *hand, int id)$/;"	f	typeref:typename:void
+put_timestamp	put_timestamp.c	/^void	put_timestamp(int id, int status)$/;"	f	typeref:typename:void
+set_dead_time	set_dead_time.c	/^void	set_dead_time(t_philo *philo)$/;"	f	typeref:typename:void
+set_msg	put_timestamp.c	/^static void	set_msg(int status, char **msg)$/;"	f	typeref:typename:void	file:
+set_status	set_status.c	/^void	set_status(t_philo *philo, int status)$/;"	f	typeref:typename:void
+time_cmp	dead_or_alive.c	/^static int		time_cmp(t_time *l_dead)$/;"	f	typeref:typename:int	file:

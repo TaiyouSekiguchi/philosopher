@@ -6,40 +6,40 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/24 12:48:16 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/26 17:46:45 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PHILO			=	philo
 SRCS			=	main.c\
-					get_fork.c\
-					drop_fork.c\
-					philosopher.c\
-					set_status.c\
-					get_status.c\
-					put_timestamp.c\
+					add_eat_count.c\
 					argv_atoi.c\
-					fork_init.c\
-					philos_init.c\
-					set_dead_time.c\
-					monitor_init.c\
-					fork_destroy.c\
+					dead_or_alive.c\
 					do_pthread_create.c\
 					do_pthread_join.c\
-					on_fork_flag.c\
-					off_fork_flag.c\
+					drop_fork.c\
+					fork_destroy.c\
+					fork_init.c\
+					get_fork.c\
+					get_status.c\
+					monitor_init.c\
 					monitoring.c\
 					now_eating.c\
 					now_sleeping.c\
+					off_fork_flag.c\
+					on_fork_flag.c\
+					philos_init.c\
+					philosopher.c\
 					put_fork.c\
-					dead_or_alive.c
+					put_timestamp.c\
+					set_dead_time.c\
+					set_status.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
-#CFLAGS			+=	-fsanitize=thread -O1
-#CFLAGS			+=	-g
+#CFLAGS			+=	 -g -fsanitize=thread -O1
 INCLUDE			=	-I./include
 LIB				=	-lpthread -Llibft -lft
 RM				=	rm -f

@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:05:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 23:10:20 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 16:16:57 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	do_malloc(t_philo **philos, int num)
 	return (SUCCESS);
 }
 
-static void	data_set(t_philo **philos, t_arg *args, t_fork *forks, pthread_mutex_t *lock)
+static void	do_set(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock)
 {
 	int	num;
 	int	i;
@@ -46,13 +46,13 @@ static void	data_set(t_philo **philos, t_arg *args, t_fork *forks, pthread_mutex
 	}
 }
 
-int	philos_init(t_philo **philos, t_arg *args, t_fork *forks, pthread_mutex_t *lock)
+int	philos_init(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock)
 {
 	int	num;
 
 	num = args->num_of_philos;
 	if (!do_malloc(philos, num))
 		return (FAILURE);
-	data_set(philos, args, forks, lock);
+	do_set(philos, args, forks, lock);
 	return (SUCCESS);
 }

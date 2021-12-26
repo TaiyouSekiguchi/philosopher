@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:51:27 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/24 11:51:31 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 15:58:56 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,17 @@ void	put_fork(t_philo *philo, t_hand *hand, int id)
 
 	get_fork_flag(philo, hand->left, &local_fork_flag);
 	if (local_fork_flag == id)
+	{
 		pthread_mutex_unlock(&philo->forks->forks[hand->left]);
-	get_fork_flag(philo, hand->right, &local_fork_flag);
-	if (local_fork_flag == id)
-		pthread_mutex_unlock(&philo->forks->forks[hand->right]);
+		printf("fork down left hand\n");
+	}
+	if (hand->left != hand->right)
+	{
+		get_fork_flag(philo, hand->right, &local_fork_flag);
+		if (local_fork_flag == id)
+		{
+			pthread_mutex_unlock(&philo->forks->forks[hand->right]);
+			printf("fork down right hand\n");
+		}
+	}
 }

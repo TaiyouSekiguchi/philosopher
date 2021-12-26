@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/24 12:47:11 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:46:07 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define NONE -1
 # define OFF -1
 
+typedef pthread_mutex_t t_lock;
+
 typedef enum e_result
 {
 	SUCCESS = 1,
@@ -40,6 +42,7 @@ typedef enum e_status
 	EAT,
 	SLEEP,
 	DIE,
+	GYM,
 }			t_status;
 
 typedef enum e_group
@@ -100,14 +103,15 @@ typedef struct s_hand
 	int				right;
 }					t_hand;
 
+
+void	add_eat_count(t_philo *philo);
 int		argv_atoi(t_arg *arg, int argc, char *argv[]);
 int		fork_init(t_fork *forks, int num);
-int		philos_init(t_philo **philos, t_arg *args, t_fork *forks, pthread_mutex_t *lock);
+int		philos_init(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock);
 void	monitor_init(t_monitor *monitor, t_philo *philos);
 int		do_pthread_create(t_philo *philos, t_monitor *monitor);
 int		do_pthread_join(t_philo *philos, t_monitor *monitor);
 int		fork_destroy(t_fork *forks, int num);
-
 void	*philosopher(void *arg);
 void	*monitoring(void *arg);
 void	put_timestamp(int id, int status);
@@ -121,10 +125,7 @@ void	on_fork_flag(t_philo *philo, int fork_position);
 void	off_fork_flag(t_philo *philo, int left_fork, int right_fork);
 void	now_eating(int time_to_eat);
 void	now_sleeping(int time_to_sleep);
-
 int		dead_or_alive(t_monitor *monitor, int num);
-
-
 
 
 #endif

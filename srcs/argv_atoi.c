@@ -6,17 +6,23 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:49:23 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/20 11:52:31 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:12:54 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static	int	return_failure(char *msg)
+{
+	ft_putendl_fd(msg, STDERR_FILENO);
+	return (FAILURE);
+}
+
 int	argv_atoi(t_arg *args, int argc, char *argv[])
 {
 	args->num_of_philos = ft_atoi(argv[1]);
 	if (args->num_of_philos <= 0)
-		return (FAILURE);
+		return (return_failure("arg is negative"));
 
 	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]);
@@ -24,13 +30,13 @@ int	argv_atoi(t_arg *args, int argc, char *argv[])
 	if (args->time_to_die < 0
 		|| args->time_to_eat < 0
 		|| args->time_to_sleep < 0)
-		return (FAILURE);
+		return (return_failure("arg is negative"));
 
 	if (argc == 6)
 	{
 		args->num_of_times_must_eat = ft_atoi(argv[5]);
 		if (args->num_of_times_must_eat < 0)
-			return (FAILURE);
+			return (return_failure("arg is negative"));
 	}
 	else
 		args->num_of_times_must_eat = NONE;

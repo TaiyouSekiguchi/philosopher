@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/26 15:40:20 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:45:10 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	*philosopher(void *arg)
 		{
 			set_dead_time(philo);
 			now_eating(philo->args->time_to_eat);
+			add_eat_count(philo);
 			local_status = SLEEP;
 		}
 		else if (local_status == SLEEP)
@@ -76,7 +77,7 @@ void	*philosopher(void *arg)
 		}
 
 		get_status(philo, &tmp_status);
-		if (tmp_status == DIE || local_status == DIE)
+		if (tmp_status == DIE || local_status == DIE || tmp_status == GYM)
 		{
 			put_fork(philo, &hand, id);
 			break ;
