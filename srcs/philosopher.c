@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 11:13:37 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 11:21:39 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,5 @@ void	*philosopher(void *arg)
 			put_timestamp(id, l_status);
 		}
 	}
-	printf("philo[%d] is exit\n", id);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:32:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 11:05:57 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 11:22:00 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ void	*monitoring(void *arg)
 			break ;
 		usleep(100);
 	}
-	printf("monitor is exit\n");
 	return (NULL);
 }

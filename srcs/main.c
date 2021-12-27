@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 11:12:32 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 11:23:22 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ int	main(int argc, char *argv[])
 	if (!mutex_destroy(&locks, args.num_of_philos))
 		return (1);
 	free(philos);
-	printf("Philosopher is finish\n");
 	return (0);
 }
