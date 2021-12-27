@@ -11,14 +11,14 @@ int	do_pthread_join(t_philo *philos, t_monitor *monitor)
 	{
 		if (pthread_join(philos[i].philo, NULL) != 0)
 		{
-			ft_putendl_fd("pthread_join failed int do_pthread_join.", STDERR_FILENO);
+			ft_putendl_fd("pthread_join failed int do_pthread_join.", STDERR);
 			return (FAILURE);
 		}
 		i++;
 	}
 	if (pthread_join(monitor->monitor, NULL) != 0)
 	{
-		ft_putendl_fd("pthread_join failed int do_pthread_join.", STDERR_FILENO);
+		ft_putendl_fd("pthread_join failed int do_pthread_join.", STDERR);
 		return (FAILURE);
 	}
 	return (SUCCESS);

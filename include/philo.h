@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 11:09:12 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 14:24:12 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # define NONE -1
 
 typedef pthread_mutex_t t_mtx;
+
+typedef enum e_io
+{
+	STDIN = 0,
+	STDOUT = 1,
+	STDERR = 2,
+}			t_io;
 
 typedef enum e_result
 {
@@ -137,5 +144,9 @@ void	now_eating(int time_to_eat);
 void	now_sleeping(int time_to_sleep);
 int		dead_or_alive(t_monitor *monitor, int num);
 int		stomack_check(t_monitor *monitor, int num);
+void	take_left_fork(t_philo *philo, t_hand *hand, int *l_status);
+void	take_right_fork(t_philo *philo, t_hand *hand, int *l_status);
+void	do_eat(t_philo *philo, int *l_status);
+void	do_sleep(t_philo *philo, t_hand *hand, int *l_status);
 
 #endif

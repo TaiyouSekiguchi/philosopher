@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:49:23 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 09:32:28 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:06:47 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	int	return_failure(char *msg)
 {
-	ft_putendl_fd(msg, STDERR_FILENO);
+	ft_putendl_fd(msg, STDERR);
 	return (FAILURE);
 }
 

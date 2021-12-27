@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:05:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 10:08:38 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:05:18 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	alloc_part(t_philo **philos, int num)
 	*philos = (t_philo *)malloc(sizeof(t_philo) * num);
 	if (*philos == NULL)
 	{
-		ft_putendl_fd("malloc failed in philos_init", STDERR_FILENO);
+		ft_putendl_fd("malloc failed in philos_init", STDERR);
 		return (FAILURE);
 	}
 	return (SUCCESS);

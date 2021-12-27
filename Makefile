@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/27 11:18:08 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/27 14:11:26 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS			=	main.c\
 					put_timestamp.c\
 					set_dead_time.c\
 					set_status.c\
-					stomach_check.c
+					stomach_check.c\
+					philo_action.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

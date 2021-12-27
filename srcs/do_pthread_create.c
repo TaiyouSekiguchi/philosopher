@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 16:22:39 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 10:14:32 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:02:58 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	do_pthread_create(t_philo *philos, t_monitor *monitor)
 	{
 		if (pthread_create(&philos[i].philo, NULL, philosopher, &philos[i]) == -1)
 		{
-			ft_putendl_fd("pthread_create failed in do_pthread_create.", STDERR_FILENO);
+			ft_putendl_fd("pthread_create failed in do_pthread_create.", STDERR);
 			return (FAILURE);
 		}
 		i++;
 	}
 	if (pthread_create(&monitor->monitor, NULL, monitoring, monitor) == -1)
 	{
-		ft_putendl_fd("pthread_create failed in do_pthread_create.", STDERR_FILENO);
+		ft_putendl_fd("pthread_create failed in do_pthread_create.", STDERR);
 		return (FAILURE);
 	}
 	return (SUCCESS);
