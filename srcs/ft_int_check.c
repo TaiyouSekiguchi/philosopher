@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_int_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/16 11:17:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/07/16 11:38:40 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/10/21 11:43:05 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/27 15:36:47 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-t_list	*ft_lstnew(void *content)
+int	ft_int_check(unsigned int input, unsigned int add, int minus)
 {
-	t_list	*new;
+	unsigned int	input_limit;
+	unsigned int	add_limit;
+	unsigned int	tmp;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	tmp = INT_MAX;
+	if (minus == 1)
+		tmp++;
+	input_limit = tmp / 10;
+	add_limit = tmp % 10;
+	if (input > input_limit || (input == input_limit && add > add_limit))
+		return (0);
+	return (1);
 }

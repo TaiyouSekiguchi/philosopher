@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 12:02:28 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/07/16 11:40:49 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/07/14 19:26:59 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/27 15:50:36 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
-	size_t	j;
 
-	if (needle[0] == '\0')
-		return ((char *)haystack);
 	i = 0;
-	while (haystack[i] != '\0' && i < len)
-	{
-		j = 0;
-		while (haystack[i + j] == needle[j] && i + j < len)
-		{
-			j++;
-			if (needle[j] == '\0')
-				return ((char *)(haystack + i));
-		}
+	while (s[i] != '\0')
 		i++;
-	}
-	return (NULL);
+	return (i);
 }

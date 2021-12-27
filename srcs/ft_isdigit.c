@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 18:57:59 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/07/14 19:01:05 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/07/15 12:44:54 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/27 15:45:18 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_isdigit(int c)
 {
-	unsigned char	*ucdst;
-	unsigned char	*ucsrc;
-	size_t			i;
-
-	if (n == 0 || dst == src)
-		return (dst);
-	ucdst = (unsigned char *)dst;
-	ucsrc = (unsigned char *)src;
-	i = 0;
-	while (i < n)
-	{
-		ucdst[i] = ucsrc[i];
-		i++;
-	}
-	return (dst);
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

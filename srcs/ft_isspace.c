@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/14 19:40:16 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/08/18 11:48:57 by tsekiguc         ###   ########.fr       */
+/*   Created: 2021/10/21 11:43:21 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/27 15:45:34 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-char	*ft_strrchr(const char *s, int c)
+int	ft_isspace(int c)
 {
-	char	*ret;
 	char	cc;
-	size_t	len;
-	size_t	i;
 
-	ret = NULL;
 	cc = (char)c;
-	len = ft_strlen(s);
-	i = 0;
-	while (i <= len)
-	{
-		if (s[i] == cc)
-			ret = (char *)&s[i];
-		i++;
-	}
-	return (ret);
+	if (cc == '\t' || cc == '\n' || cc == '\v' || cc == '\f'
+		|| cc == '\r' || cc == ' ')
+		return (1);
+	return (0);
 }

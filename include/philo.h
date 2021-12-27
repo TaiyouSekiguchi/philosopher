@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 14:24:12 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 15:53:45 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,10 @@
 
 #include <pthread.h>
 #include <stdio.h>
+#include <limits.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <errno.h>
-#include <assert.h>
 #include <sys/time.h>
-
-#include "libft.h"
 
 # define NONE -1
 
@@ -148,5 +145,11 @@ void	take_left_fork(t_philo *philo, t_hand *hand, int *l_status);
 void	take_right_fork(t_philo *philo, t_hand *hand, int *l_status);
 void	do_eat(t_philo *philo, int *l_status);
 void	do_sleep(t_philo *philo, t_hand *hand, int *l_status);
+void	ft_putendl_fd(char *s, int fd);
+int		philo_atoi(const char *str);
+int		ft_int_check(unsigned int input, unsigned int add, int minus);
+int		ft_isspace(int c);
+int		ft_isdigit(int c);
+size_t	ft_strlen(const char *s);
 
 #endif
