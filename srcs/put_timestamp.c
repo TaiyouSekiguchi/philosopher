@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 10:32:21 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 10:33:40 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 14:34:49 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	put_timestamp(int id, int status)
 	msg = NULL;
 	set_msg(status, &msg);
 	gettimeofday(&tv, NULL);
-	printf("%ld%03lu %d %s\n", tv.tv_sec, tv.tv_usec / 1000, id, msg);
+	printf("%ld%03lu %d %s\n", tv.tv_sec, tv.tv_usec / 1000, id + 1, msg);
 }
