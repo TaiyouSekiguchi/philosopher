@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/26 22:38:16 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/27 11:18:08 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,24 +18,21 @@ SRCS			=	main.c\
 					do_pthread_create.c\
 					do_pthread_join.c\
 					drop_fork.c\
-					fork_destroy.c\
-					fork_init.c\
 					get_fork.c\
 					get_status.c\
-					lock_destroy.c\
-					lock_init.c\
 					monitor_init.c\
 					monitoring.c\
+					mutex_init.c\
+					mutex_destroy.c\
 					now_eating.c\
 					now_sleeping.c\
-					off_fork_flag.c\
-					on_fork_flag.c\
 					philos_init.c\
 					philosopher.c\
 					put_fork.c\
 					put_timestamp.c\
 					set_dead_time.c\
-					set_status.c
+					set_status.c\
+					stomach_check.c
 OBJS_DIR		=	./objs
 OBJS			=	$(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

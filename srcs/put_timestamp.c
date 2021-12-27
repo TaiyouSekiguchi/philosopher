@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_timestamp.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 10:32:21 by tsekiguc          #+#    #+#             */
+/*   Updated: 2021/12/27 10:33:40 by tsekiguc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static void	set_msg(int status, char **msg)
@@ -12,13 +24,11 @@ static void	set_msg(int status, char **msg)
 		*msg = "has taken a fork";
 	else if (status == DIE)
 		*msg = "died";
-	else
-		*msg = "WHAT!!??";
 }
 
 void	put_timestamp(int id, int status)
 {
-	char	*msg;
+	char			*msg;
 	struct timeval	tv;
 
 	msg = NULL;

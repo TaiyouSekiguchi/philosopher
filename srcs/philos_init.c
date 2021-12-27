@@ -6,21 +6,24 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:05:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/26 21:04:50 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 10:08:38 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	do_malloc(t_philo **philos, int num)
+static int	alloc_part(t_philo **philos, int num)
 {
 	*philos = (t_philo *)malloc(sizeof(t_philo) * num);
 	if (*philos == NULL)
+	{
+		ft_putendl_fd("malloc failed in philos_init", STDERR_FILENO);
 		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 
-static void	do_set(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock)
+static void	do_set(t_philo **philos, t_arg *args, t_mtx *forks, t_mtx *locks)
 {
 	int	num;
 	int	i;
@@ -41,19 +44,18 @@ static void	do_set(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock)
 		(*philos)[i].dead.msec = 0;
 		(*philos)[i].args = args;
 		(*philos)[i].forks = forks;
-		(*philos)[i].lock = &lock->locks[i];
-		(*philos)[i].common_lock = &lock->common_lock;
+		(*philos)[i].lock = &locks[i];
 		i++;
 	}
 }
 
-int	philos_init(t_philo **philos, t_arg *args, t_fork *forks, t_lock *lock)
+int	philos_init(t_philo **philos, t_arg *args, t_mtx *forks, t_mtx *locks)
 {
 	int	num;
 
 	num = args->num_of_philos;
-	if (!do_malloc(philos, num))
+	if (!alloc_part(philos, num))
 		return (FAILURE);
-	do_set(philos, args, forks, lock);
+	do_set(philos, args, forks, locks);
 	return (SUCCESS);
 }
