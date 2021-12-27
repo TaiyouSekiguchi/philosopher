@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/27 15:48:06 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/27 18:19:11 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ all				:	$(PHILO)
 $(PHILO)		:	$(OBJS)
 					$(CC) $(OBJS) $(CFLAGS) $(LIB) -o $@
 
-$(OBJS_DIR)/%.o	:	%.c
+$(OBJS_DIR)/%.o	:	%.c philo.h
 					@[ -d $(OBJS_DIR) ]
 					$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
