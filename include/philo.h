@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 17:57:16 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:36:38 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,6 @@ typedef struct s_arg
 	int			num_of_times_must_eat;
 }				t_arg;
 
-typedef struct s_time
-{
-	long		sec;
-	long		msec;
-}				t_time;
-
 typedef struct s_philo
 {
 	pthread_t	philo;
@@ -100,7 +94,7 @@ typedef struct s_philo
 	int			group;
 	int			status;
 	int			eat_count;
-	t_time		dead;
+	long		dead_time;
 	t_arg		*args;
 	t_mtx		*forks;
 	t_mtx		*lock;
@@ -125,9 +119,9 @@ int		argv_atoi(t_arg *arg, int argc, char *argv[]);
 int		mutex_init(t_mtx **mutex, int num);
 int		philos_init(t_philo **philos, t_arg *args, t_mtx *forks, t_mtx *lock);
 void	monitor_init(t_monitor *monitor, t_philo *philos);
-int		do_pthread_create(t_philo *philos, t_monitor *monitor);
-int		do_pthread_join(t_philo *philos, t_monitor *monitor);
-int		mutex_destroy(t_mtx **mutex, int num);
+void	do_pthread_create(t_philo *philos, t_monitor *monitor);
+void	do_pthread_join(t_philo *philos, t_monitor *monitor);
+void	mutex_destroy(t_mtx **mutex, int num);
 void	*philosopher(void *arg);
 void	*monitoring(void *arg);
 long	get_time(void);

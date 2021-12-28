@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:05:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 12:05:18 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 18:36:55 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ static void	do_set(t_philo **philos, t_arg *args, t_mtx *forks, t_mtx *locks)
 			(*philos)[i].group = ODD;
 		(*philos)[i].status = THINK;
 		(*philos)[i].eat_count = 0;
-		(*philos)[i].dead.sec = 0;
-		(*philos)[i].dead.msec = 0;
+		(*philos)[i].dead_time = 0;
 		(*philos)[i].args = args;
 		(*philos)[i].forks = forks;
 		(*philos)[i].lock = &locks[i];

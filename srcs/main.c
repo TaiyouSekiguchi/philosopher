@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 17:58:59 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:37:16 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ int	main(int argc, char *argv[])
 		|| !my_init(&args, &forks, &locks, &philos))
 		return (1);
 	monitor_init(&monitor, philos);
-	if (!do_pthread_create(philos, &monitor)
-		|| !do_pthread_join(philos, &monitor)
-		|| !mutex_destroy(&forks, args.num_of_philos)
-		|| !mutex_destroy(&locks, args.num_of_philos))
-		return (1);
+	do_pthread_create(philos, &monitor);
+	do_pthread_join(philos, &monitor);
+	mutex_destroy(&forks, args.num_of_philos);
+	mutex_destroy(&locks, args.num_of_philos);
 	free(philos);
 	return (0);
 }

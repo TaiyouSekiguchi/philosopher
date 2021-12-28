@@ -6,13 +6,13 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 14:27:55 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 14:27:57 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:36:02 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	do_pthread_join(t_philo *philos, t_monitor *monitor)
+void	do_pthread_join(t_philo *philos, t_monitor *monitor)
 {
 	int	num;
 	int	i;
@@ -21,17 +21,8 @@ int	do_pthread_join(t_philo *philos, t_monitor *monitor)
 	i = 0;
 	while (i < num)
 	{
-		if (pthread_join(philos[i].philo, NULL) != 0)
-		{
-			ft_putendl_fd("pthread_join failed int do_pthread_join.", STDERR);
-			return (FAILURE);
-		}
+		pthread_join(philos[i].philo, NULL);
 		i++;
 	}
-	if (pthread_join(monitor->monitor, NULL) != 0)
-	{
-		ft_putendl_fd("pthread_join failed int do_pthread_join.", STDERR);
-		return (FAILURE);
-	}
-	return (SUCCESS);
+	pthread_join(monitor->monitor, NULL);
 }
