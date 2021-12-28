@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 10:21:41 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 12:04:38 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:16:19 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	mutex_destroy(t_mtx **mutex, int num)
 	{
 		if (pthread_mutex_destroy(&(*mutex)[i]) != 0)
 		{
-			ft_putendl_fd("pthread_mutex_destroy failed in mutex_destroy", STDERR);
+			ft_putendl_fd("pthread_mutex_destroy failed", STDERR);
 			return (FAILURE);
 		}
 		i++;

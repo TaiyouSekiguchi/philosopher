@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 20:28:13 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/26 20:28:15 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:16:39 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,3 @@ void	set_status(t_philo *philo, int status)
 	philo->status = status;
 	pthread_mutex_unlock(philo->lock);
 }
-
