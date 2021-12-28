@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 18:15:41 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:22:09 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char *argv[])
 
 	if (argc < 5 || argc > 6)
 	{
-		ft_putendl_fd("Argument is incorrect.", STDERR);
+		ft_putendl_fd("Error: invalid arguments", STDERR);
 		return (1);
 	}
 	if (!argv_atoi(&args, argc, argv)
