@@ -3,3 +3,4 @@ philo
 *.a
 tags
 test.sh
+tester_philosophers

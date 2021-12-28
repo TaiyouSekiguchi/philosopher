@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:12:04 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 11:52:39 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 21:56:12 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*philosopher(void *arg)
 
 	philo = (t_philo *)arg;
 	id = philo->id;
-	set_status_and_put_timestamp(philo, THINK, id);
+	set_status(philo, THINK);
 	hand_init(&hand, id, philo);
 	if (philo->group == EVEN)
 		usleep(2000);
