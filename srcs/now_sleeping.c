@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:11:08 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/24 11:11:39 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 09:17:01 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	now_sleeping(int time_to_sleep)
 {
-	usleep(time_to_sleep * 1000);
+	act_sleep(time_to_sleep);
 }

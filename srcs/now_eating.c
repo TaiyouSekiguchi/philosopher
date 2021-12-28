@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 11:04:11 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/24 11:04:25 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 09:16:38 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	now_eating(int time_to_eat)
 {
-	usleep(time_to_eat * 1000);
+	act_sleep(time_to_eat);
 }
