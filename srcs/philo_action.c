@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 13:43:39 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 08:45:54 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:40:41 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	take_right_fork(t_philo *philo, t_hand *hand, int *l_status)
 void	do_eat(t_philo *philo, int *l_status)
 {
 	set_dead_time(philo);
-	now_eating(philo->args->time_to_eat);
+	act_sleep(philo->args->time_to_eat);
 	add_eat_count(philo);
 	*l_status = SLEEP;
 }
@@ -44,6 +44,6 @@ void	do_sleep(t_philo *philo, t_hand *hand, int *l_status)
 	drop_fork(philo, hand->left, hand->right);
 	hand->left_status = EMPTY;
 	hand->right_status = EMPTY;
-	now_sleeping(philo->args->time_to_sleep);
+	act_sleep(philo->args->time_to_sleep);
 	*l_status = THINK;
 }

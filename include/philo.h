@@ -6,23 +6,23 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 09:03:08 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 15:13:40 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <pthread.h>
-#include <stdio.h>
-#include <limits.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/time.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <limits.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/time.h>
 
 # define NONE -1
 
-typedef pthread_mutex_t t_mtx;
+typedef pthread_mutex_t	t_mtx;
 
 typedef enum e_io
 {
@@ -136,11 +136,9 @@ void	set_dead_time(t_philo *philo);
 void	set_status(t_philo *philo, int status);
 void	get_status(t_philo *philo, int *status);
 void	get_fork(t_philo *philo, int fork_id);
-void	drop_fork(t_philo *philo, int left_fork ,int right_fork);
+void	drop_fork(t_philo *philo, int left_fork, int right_fork);
 void	put_fork(t_philo *philo, t_hand *hand);
 void	act_sleep(int act_time);
-void	now_eating(int time_to_eat);
-void	now_sleeping(int time_to_sleep);
 int		dead_or_alive(t_monitor *monitor, int num);
 int		stomack_check(t_monitor *monitor, int num);
 void	take_left_fork(t_philo *philo, t_hand *hand, int *l_status);

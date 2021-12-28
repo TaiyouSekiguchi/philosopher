@@ -6,7 +6,7 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/28 09:02:14 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/28 14:41:18 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,6 @@ SRCS			=	main.c\
 					monitor_init.c\
 					mutex_destroy.c\
 					mutex_init.c\
-					now_eating.c\
-					now_sleeping.c\
 					philo_action.c\
 					philo_atoi.c\
 					philos_init.c\

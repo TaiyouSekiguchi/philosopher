@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 09:56:10 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 12:05:01 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:57:45 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	init_part(t_mtx **mutex, int num)
 	i = 0;
 	while (i < num)
 	{
-		if (pthread_mutex_init(&(*mutex)[i], NULL) == -1)
+		if (pthread_mutex_init(&(*mutex)[i], NULL) != 0)
 		{
 			ft_putendl_fd("pthread_mutex_init failed in mutex_init", STDERR);
 			free(*mutex);
