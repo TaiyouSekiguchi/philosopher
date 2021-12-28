@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 16:22:39 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 14:17:18 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:29:22 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	do_pthread_create(t_philo *philos, t_monitor *monitor)
 	i = 0;
 	while (i < num)
 	{
-		ret = pthread_create(&philos[i].philo, NULL, philosopher, &philos[i]); 
+		ret = pthread_create(&philos[i].philo, NULL, philosopher, &philos[i]);
 		if (ret == -1)
 		{
 			ft_putendl_fd("pthread_create failed.", STDERR);

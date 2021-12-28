@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 12:36:39 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 14:15:43 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:25:46 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	dead_or_alive(t_monitor *monitor, int num)
 		if (dead_time_cmp(&l_dead) == DEAD)
 		{
 			put_timestamp(i, DIE);
-			all_status_die(monitor , num);
+			all_status_die(monitor, num);
 			return (DEAD);
 		}
 		i++;
