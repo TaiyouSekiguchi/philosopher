@@ -6,11 +6,31 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:16:47 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/28 14:22:09 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 17:58:59 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	my_init(t_arg *args, t_mtx **forks, t_mtx **locks, t_philo **philos)
+{
+	*forks = NULL;
+	*locks = NULL;
+	*philos = NULL;
+	if (!mutex_init(forks, args->num_of_philos)
+		|| !mutex_init(locks, args->num_of_philos)
+		|| !philos_init(philos, args, *forks, *locks))
+	{
+		if (*forks != NULL)
+			free(*forks);
+		if (*locks != NULL)
+			free(*locks);
+		if (*philos != NULL)
+			free(*philos);
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -26,9 +46,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	if (!argv_atoi(&args, argc, argv)
-		|| !mutex_init(&forks, args.num_of_philos)
-		|| !mutex_init(&locks, args.num_of_philos)
-		|| !philos_init(&philos, &args, forks, locks))
+		|| !my_init(&args, &forks, &locks, &philos))
 		return (1);
 	monitor_init(&monitor, philos);
 	if (!do_pthread_create(philos, &monitor)

@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/16 11:14:34 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 15:45:54 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 16:17:28 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
+	int	tmp;
+
 	if (s != NULL)
 	{
-		write(fd, s, ft_strlen(s));
-		write(fd, "\n", 1);
+		tmp = write(fd, s, ft_strlen(s));
+		tmp = write(fd, "\n", 1);
 	}
+	(void)tmp;
 }

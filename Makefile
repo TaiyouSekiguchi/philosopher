@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
+#    By: tsekiguc <tsekiguc@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/28 14:41:18 by tsekiguc         ###   ########.fr        #
+#    Created: 2021/12/28 17:59:43 by tsekiguc          #+#    #+#              #
+#    Updated: 2021/12/28 18:00:22 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

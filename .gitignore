@@ -2,3 +2,4 @@ philo
 *.o
 *.a
 tags
+test.sh
