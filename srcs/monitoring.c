@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:32:57 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 11:22:00 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/27 18:49:47 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*monitoring(void *arg)
 			break ;
 		if (eat_count_flag == ON && stomack_check(monitor, num) == FULL)
 			break ;
-		usleep(100);
+		usleep(500);
 	}
 	return (NULL);
 }

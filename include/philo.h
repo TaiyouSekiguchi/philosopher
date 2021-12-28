@@ -6,7 +6,7 @@
 /*   By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 23:13:36 by tsekiguc          #+#    #+#             */
-/*   Updated: 2021/12/27 18:19:39 by tsekiguc         ###   ########.fr       */
+/*   Updated: 2021/12/28 09:03:08 by tsekiguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int		do_pthread_join(t_philo *philos, t_monitor *monitor);
 int		mutex_destroy(t_mtx **mutex, int num);
 void	*philosopher(void *arg);
 void	*monitoring(void *arg);
+long	get_time(void);
 void	put_timestamp(int id, int status);
 void	set_dead_time(t_philo *philo);
 void	set_status(t_philo *philo, int status);
@@ -137,6 +138,7 @@ void	get_status(t_philo *philo, int *status);
 void	get_fork(t_philo *philo, int fork_id);
 void	drop_fork(t_philo *philo, int left_fork ,int right_fork);
 void	put_fork(t_philo *philo, t_hand *hand);
+void	act_sleep(int act_time);
 void	now_eating(int time_to_eat);
 void	now_sleeping(int time_to_sleep);
 int		dead_or_alive(t_monitor *monitor, int num);

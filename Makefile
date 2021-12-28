@@ -6,12 +6,13 @@
 #    By: tsekiguc <tsekiguc@student.42tokyo.jp      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 23:09:40 by tsekiguc          #+#    #+#              #
-#    Updated: 2021/12/27 18:19:11 by tsekiguc         ###   ########.fr        #
+#    Updated: 2021/12/28 09:02:14 by tsekiguc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PHILO			=	philo
 SRCS			=	main.c\
+					act_sleep.c\
 					add_eat_count.c\
 					argv_atoi.c\
 					dead_or_alive.c\
@@ -25,6 +26,7 @@ SRCS			=	main.c\
 					ft_putendl_fd.c\
 					get_fork.c\
 					get_status.c\
+					get_time.c\
 					monitoring.c\
 					monitor_init.c\
 					mutex_destroy.c\
